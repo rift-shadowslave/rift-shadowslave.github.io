@@ -261,3 +261,164 @@ document.addEventListener('DOMContentLoaded', () => {
         document.body.style.opacity = '1';
     }));
 });
+
+// ---- INJECT FLOATING DONATE BUTTON ----
+document.addEventListener('DOMContentLoaded', () => {
+    if (!document.getElementById('floating-donate')) {
+        const donateBtn = document.createElement('a');
+        donateBtn.href = 'https://ko-fi.com/rift1';
+        donateBtn.target = '_blank';
+        donateBtn.rel = 'noopener noreferrer';
+        donateBtn.className = 'floating-donate';
+        donateBtn.id = 'floating-donate';
+        donateBtn.title = 'Support RIFT - Buy us a coffee!';
+        donateBtn.innerHTML = '<span class="floating-donate-icon">?</span><span class="floating-donate-text">Support RIFT</span>';
+        document.body.appendChild(donateBtn);
+    }
+});
+
+// ---- UPDATE PROGRESS WIDGET ----
+document.addEventListener('DOMContentLoaded', () => {
+    function updateProgressWidget() {
+        const widget = document.getElementById('hero-progress-widget');
+        if (!widget) return;
+        
+        let currentChap = localStorage.getItem('rift_current_chapter');
+        currentChap = currentChap ? parseInt(currentChap) : 0;
+        const maxChap = 2868;
+        
+        const percent = Math.min(100, Math.max(0, Math.round((currentChap / maxChap) * 100)));
+        document.getElementById('pw-percent').textContent = percent + '%';
+        document.getElementById('pw-fill').style.width = percent + '%';
+        document.getElementById('pw-chapter').textContent = 'Ch. ' + currentChap + ' / ' + maxChap;
+        
+        let msg = 'The Nightmare has just begun...';
+        if (currentChap > 100) msg = 'You have survived the First Nightmare!';
+        if (currentChap > 350) msg = 'The Dream Realm awaits...';
+        if (currentChap > 750) msg = 'Mastering your aspects...';
+        if (currentChap > 1500) msg = 'Approaching Saint rank...';
+        if (currentChap >= maxChap - 10) msg = 'The Rift is fully open. You are caught up!';
+        
+        document.getElementById('pw-status-msg').textContent = msg;
+    }
+    
+    // Initial update
+    updateProgressWidget();
+    
+    // Listen for changes from engine.js
+    document.addEventListener('rift-chapter-changed', updateProgressWidget);
+});
+
+// ---- ACTIVE NAV LINK HIGHLIGHTER ----
+document.addEventListener('DOMContentLoaded', () => {
+    const currentPath = window.location.pathname.split('/').pop() || 'index.html';
+    const navLinks = document.querySelectorAll('.nav-links a');
+    navLinks.forEach(link => {
+        if (link.getAttribute('href') === currentPath) {
+            link.classList.add('active');
+        } else {
+            link.classList.remove('active');
+        }
+    });
+});
+
+// ---- ACHIEVEMENT SYSTEM ----
+document.addEventListener('DOMContentLoaded', () => {
+    // Inject Achievements UI Modal
+    const modalHTML = \
+    <div id="achievements-modal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.85); z-index:9999; backdrop-filter:blur(5px); justify-content:center; align-items:center;">
+        <div style="background:var(--card-bg); border:1px solid var(--card-border); border-radius:var(--radius); width:90%; max-width:600px; max-height:80vh; overflow-y:auto; padding:2rem; position:relative;">
+            <button id="close-achievements" style="position:absolute; top:1rem; right:1rem; background:none; border:none; color:white; font-size:1.5rem; cursor:pointer;">&times;</button>
+            <h2 style="font-family:'Cinzel', serif; color:var(--primary-light); text-align:center; margin-bottom:1.5rem;">Memories & Trophies</h2>
+            <div id="achievements-list" style="display:flex; flex-direction:column; gap:1rem;"></div>
+        </div>
+    </div>
+    \;
+    document.body.insertAdjacentHTML('beforeend', modalHTML);
+
+    // Inject Button in Footer
+    const footerLinks = document.querySelector('.footer-links');
+    if (footerLinks) {
+        const achBtn = document.createElement('a');
+        achBtn.href = '#';
+        achBtn.textContent = 'Achievements ??';
+        achBtn.onclick = (e) => { e.preventDefault(); openAchievements(); };
+        footerLinks.appendChild(achBtn);
+    }
+
+    const achievements = [
+        { id: 'first_blood', name: 'Awakened', desc: 'Visited RIFT for the first time.', icon: '???' },
+        { id: 'lore_master', name: 'Lore Master', desc: 'Viewed 5 different lore entries.', icon: '??' },
+        { id: 'quiz_novice', name: 'Trial Survivor', desc: 'Played the Daily Challenge.', icon: '??' },
+        { id: 'inventory_hoarder', name: 'Memory Hoarder', desc: 'Added an item to your inventory.', icon: '??' }
+    ];
+
+    function loadProgress() {
+        let unlocked = JSON.parse(localStorage.getItem('rift_achievements') || '[]');
+        return unlocked;
+    }
+
+    function saveProgress(unlocked) {
+        localStorage.setItem('rift_achievements', JSON.stringify(unlocked));
+    }
+
+    function unlockAchievement(id) {
+        let unlocked = loadProgress();
+        if (!unlocked.includes(id)) {
+            unlocked.push(id);
+            saveProgress(unlocked);
+            const ach = achievements.find(a => a.id === id);
+            showToast('Achievement Unlocked: ' + ach.name + ' ' + ach.icon);
+        }
+    }
+
+    function showToast(msg) {
+        const toast = document.createElement('div');
+        toast.textContent = msg;
+        toast.style.cssText = 'position:fixed; bottom:80px; left:50%; transform:translateX(-50%); background:linear-gradient(135deg, #C41E3A, #8B1225); color:white; padding:0.8rem 1.5rem; border-radius:100px; z-index:10000; font-weight:bold; box-shadow:0 5px 15px rgba(0,0,0,0.5); animation:fadeUp 0.3s ease;';
+        document.body.appendChild(toast);
+        setTimeout(() => { toast.remove(); }, 3000);
+    }
+
+    function openAchievements() {
+        const modal = document.getElementById('achievements-modal');
+        const list = document.getElementById('achievements-list');
+        const unlocked = loadProgress();
+        
+        list.innerHTML = '';
+        achievements.forEach(ach => {
+            const isUnlocked = unlocked.includes(ach.id);
+            const bg = isUnlocked ? 'rgba(196, 30, 58, 0.15)' : 'rgba(255,255,255,0.02)';
+            const border = isUnlocked ? '1px solid var(--primary)' : '1px solid rgba(255,255,255,0.05)';
+            const opacity = isUnlocked ? '1' : '0.4';
+            
+            list.innerHTML += \
+                <div style="background:\; border:\; opacity:\; padding:1rem; border-radius:8px; display:flex; align-items:center; gap:1rem;">
+                    <div style="font-size:2rem;">\</div>
+                    <div>
+                        <div style="font-weight:bold; color:\;">\</div>
+                        <div style="font-size:0.8rem; color:var(--text-muted);">\</div>
+                    </div>
+                </div>
+            \;
+        });
+        
+        modal.style.display = 'flex';
+    }
+
+    document.getElementById('close-achievements').onclick = () => {
+        document.getElementById('achievements-modal').style.display = 'none';
+    };
+
+    // Trigger Initial Achievement
+    unlockAchievement('first_blood');
+
+    // Listeners for other achievements
+    document.addEventListener('rift-daily-played', () => unlockAchievement('quiz_novice'));
+    document.addEventListener('rift-item-added', () => unlockAchievement('inventory_hoarder'));
+    document.addEventListener('rift-lore-viewed', () => {
+        let count = parseInt(localStorage.getItem('rift_lore_count') || '0') + 1;
+        localStorage.setItem('rift_lore_count', count);
+        if (count >= 5) unlockAchievement('lore_master');
+    });
+});
