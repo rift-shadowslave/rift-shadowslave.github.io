@@ -157,7 +157,8 @@ body {
   border: none;
   cursor: pointer;
   margin-left: auto;
-  padding: 4px;
+  padding: 10px;
+  z-index: 101;
 }
 
 .hamburger span {
@@ -176,6 +177,11 @@ body {
   padding: 1.25rem 2rem 1.5rem;
   background: rgba(7, 7, 15, 0.98);
   border-top: 1px solid var(--card-border);
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  z-index: 99;
 }
 
 .mobile-menu a {
