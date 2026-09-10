@@ -153,15 +153,14 @@ function getEventsInRange(from, to, spoilerLevel, toggles) {
 
 function getArcName(from, to) {
     const mid = Math.floor((from + to) / 2);
-    if (mid <= 10) return 'Awakening — Sunny enters the Nightmare Realm';
-    if (mid <= 50) return 'First Nightmare Survival Arc';
-    if (mid <= 100) return 'Return to the Waking World Arc';
-    if (mid <= 200) return 'Great Clan Politics Arc';
-    if (mid <= 400) return 'Tomb of Ariel Arc';
-    if (mid <= 600) return 'Post-Tomb Ascension Arc';
-    if (mid <= 900) return 'Nameless Threat & Master Rank Arc';
-    if (mid <= 1100) return 'Moonless Seal & Memory Loss Arc';
-    return 'Saint Rank Threshold Arc';
+    if (mid <= 95) return 'Volume 1: First Nightmare & Academy Arc';
+    if (mid <= 350) return 'Volume 2: Forgotten Shore & Dark City Arc';
+    if (mid <= 600) return 'Volume 3: Chained Isles Preparation & Dreamscape Arc';
+    if (mid <= 750) return 'Volume 4: Second Nightmare & Hope\'s Prison Arc';
+    if (mid <= 1060) return 'Volume 5: Return to Waking World & Antarctica (Falcon Scott) Arc';
+    if (mid <= 1230) return 'Volume 6: Antarctica Campaign Continuation & Pre-war Arc';
+    if (mid <= 1590) return 'Volume 7: Third Nightmare (Great River & Tomb of Ariel) Arc';
+    return 'Volume 8+: Post-Twilight & War of the Domains Arc';
 }
 
 function buildFallbackSummary(events, from, to, spoilerLevel, toggles) {
@@ -234,7 +233,7 @@ async function generateAIRecap(from, to, spoilerLevel, toggles) {
         text: e.text
     }));
 
-    const response = await fetch(RECAP_API_URL, {
+    const response = await fetch('/api/recap', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
