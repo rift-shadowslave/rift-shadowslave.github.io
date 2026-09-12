@@ -233,7 +233,7 @@ async function generateAIRecap(from, to, spoilerLevel, toggles) {
         text: e.text
     }));
 
-    const response = await fetch('/api/recap', {
+    const response = await fetch('https://vercel-recap-api.vercel.app/api/recap', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({

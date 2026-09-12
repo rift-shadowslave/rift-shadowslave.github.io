@@ -2,43 +2,17 @@
 <html lang="en">
 
 <head>
-    <!-- Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-YBEL6MM1NP"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', 'G-YBEL6MM1NP');
-    </script>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Shadow Slave Inventory Tracker — Weapons, Armor & Items | RIFT</title>
+    <title>Character Inventory — RIFT</title>
     <meta name="description"
-        content="Track every Shadow Slave character's weapons, armor and abilities. See items unlocked chapter-by-chapter. The ultimate RPG-style inventory for Shadow Slave readers." />
-    <meta name="keywords"
-        content="Shadow Slave inventory, Shadow Slave items, Shadow Slave weapons, Sunny items, character equipment, Shadow Slave RPG" />
-    <meta property="og:title" content="Shadow Slave Inventory Tracker | RIFT" />
-    <meta property="og:description"
-        content="Track every character's weapons, armor and abilities — unlocked by chapter. Like a real RPG." />
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://rift-shadowslave.github.io/inventory.html" />
-    <meta property="og:image" content="https://rift-shadowslave.github.io/assets/icon-512.png" />
-    <meta name="twitter:card" content="summary" />
-    <meta name="twitter:title" content="Shadow Slave Inventory Tracker | RIFT" />
-    <meta name="twitter:description" content="Track every character's weapons, armor and abilities — unlocked by chapter. Like a real RPG." />
-    <meta name="twitter:image" content="https://rift-shadowslave.github.io/assets/icon-512.png" />
-    <link rel="canonical" href="https://rift-shadowslave.github.io/inventory.html" />
-    <link rel="manifest" href="manifest.json" />
-    <meta name="theme-color" content="#C41E3A" />
-    <link rel="icon" type="image/png" href="assets/icon-192.png" />
-    <link rel="apple-touch-icon" href="assets/icon-192.png" />
+        content="Explore every character's weapons, armor and abilities — unlocked by your reading chapter. Like a real RPG." />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link
         href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;900&family=Inter:wght@300;400;500;600;700&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="inner.css">
-    <script src="engine.js"></script>
     <style>
         /* ═══════════════════════════════════════════════════
    INVENTORY PAGE — FULL CUSTOM STYLES
@@ -54,26 +28,7 @@
 
         .inv-page {
             min-height: 100vh;
-            padding: calc(var(--nav-h) + 2rem) 0 4rem;
-        }
-
-        /* ── BREADCRUMB ── */
-        .breadcrumb {
-            padding: 0 2rem;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            font-size: 0.85rem;
-            color: var(--text-muted);
-            font-weight: 600;
-            letter-spacing: 0.05em;
-            text-transform: uppercase;
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-
-        .breadcrumb .bc-cur {
-            color: var(--primary-light);
+            padding: 0 0 4rem;
         }
 
         /* ── HERO ── */
@@ -89,49 +44,31 @@
             background: rgba(196, 30, 58, 0.1);
             border: 1px solid rgba(196, 30, 58, 0.25);
             border-radius: 100px;
-            padding: 0.35rem 1.2rem;
+            padding: 0.3rem 1rem;
             font-size: 0.65rem;
             font-weight: 700;
             letter-spacing: 0.15em;
             color: var(--primary-light);
-            margin-bottom: 1.2rem;
+            margin-bottom: 1rem;
             text-transform: uppercase;
-            animation: subtlePulse 2s infinite;
-        }
-
-        @keyframes subtlePulse {
-            0% {
-                box-shadow: 0 0 0 0 rgba(196, 30, 58, 0.4);
-            }
-
-            70% {
-                box-shadow: 0 0 0 15px rgba(196, 30, 58, 0);
-            }
-
-            100% {
-                box-shadow: 0 0 0 0 rgba(196, 30, 58, 0);
-            }
         }
 
         .inv-title {
             font-family: 'Cinzel', serif;
-            font-size: clamp(2.2rem, 4vw, 3.2rem);
+            font-size: clamp(1.8rem, 3.5vw, 2.8rem);
             font-weight: 900;
-            background: linear-gradient(135deg, #fff 30%, var(--primary-light));
+            background: linear-gradient(135deg, #fff 40%, var(--primary-light));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            margin-bottom: 0.75rem;
-            letter-spacing: -0.02em;
-            text-shadow: 0 0 40px rgba(196, 30, 58, 0.2);
+            margin-bottom: 0.5rem;
         }
 
         .inv-sub {
             color: var(--text-muted);
-            font-size: 0.95rem;
-            max-width: 550px;
+            font-size: 0.88rem;
+            max-width: 500px;
             margin: 0 auto;
-            line-height: 1.6;
         }
 
         /* ── CHAPTER CONTROL BAR ── */
@@ -139,20 +76,17 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 1.2rem;
-            padding: 1.2rem 2.5rem;
-            margin-bottom: 2.5rem;
+            gap: 1rem;
+            padding: 1rem 2rem;
+            margin-bottom: 1.5rem;
             flex-wrap: wrap;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.02), transparent);
-            border-top: 1px solid rgba(255, 255, 255, 0.03);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.03);
         }
 
         .chapter-bar-label {
-            font-size: 0.8rem;
-            font-weight: 700;
-            color: var(--primary-light);
-            letter-spacing: 0.1em;
+            font-size: 0.78rem;
+            font-weight: 600;
+            color: var(--text-muted);
+            letter-spacing: 0.08em;
             text-transform: uppercase;
         }
 
@@ -160,25 +94,18 @@
             display: flex;
             align-items: center;
             gap: 0.5rem;
-            background: rgba(0, 0, 0, 0.5);
-            border: 1px solid var(--primary-glow);
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
             border-radius: var(--radius-sm);
             padding: 0.4rem 0.8rem;
-            box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.5);
-            transition: all 0.3s ease;
-        }
-
-        .chapter-input-group:focus-within {
-            border-color: var(--primary-light);
-            box-shadow: 0 0 15px rgba(196, 30, 58, 0.3), inset 0 0 10px rgba(0, 0, 0, 0.5);
         }
 
         .chapter-input {
             background: none;
             border: none;
             color: #fff;
-            font-size: 1.1rem;
-            font-weight: 800;
+            font-size: 1rem;
+            font-weight: 700;
             font-family: 'Cinzel', serif;
             width: 80px;
             text-align: center;
@@ -216,16 +143,15 @@
         /* ── MAIN 3-PANEL LAYOUT ── */
         .inv-layout {
             display: grid;
-            grid-template-columns: 240px 1fr 340px;
+            grid-template-columns: 220px 1fr 300px;
             grid-template-rows: auto;
-            gap: 1.5rem;
-            max-width: 1400px;
+            gap: 1.25rem;
+            max-width: 1300px;
             margin: 0 auto;
-            padding: 0 2rem;
-            align-items: start;
+            padding: 0 1.5rem;
         }
 
-        @media (max-width: 1024px) {
+        @media (max-width: 900px) {
             .inv-layout {
                 grid-template-columns: 1fr 1fr;
             }
@@ -233,7 +159,6 @@
             .inv-char-display {
                 grid-column: 1 / -1;
                 order: -1;
-                min-height: 400px;
             }
         }
 
@@ -268,31 +193,28 @@
         .char-select-btn {
             display: flex;
             align-items: center;
-            gap: 0.8rem;
-            background: rgba(10, 5, 20, 0.4);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            border-radius: 10px;
-            padding: 0.75rem 1rem;
+            gap: 0.75rem;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: 8px;
+            padding: 0.65rem 0.85rem;
             cursor: pointer;
-            transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+            transition: all 0.25s;
             text-align: left;
             width: 100%;
             color: var(--text-muted);
-            backdrop-filter: blur(8px);
         }
 
         .char-select-btn:hover {
-            background: rgba(255, 255, 255, 0.05);
-            border-color: rgba(255, 255, 255, 0.15);
+            background: rgba(196, 30, 58, 0.06);
+            border-color: rgba(196, 30, 58, 0.2);
             color: #fff;
-            transform: translateX(4px);
         }
 
         .char-select-btn.active {
-            background: linear-gradient(135deg, rgba(196, 30, 58, 0.15), rgba(0, 0, 0, 0.2));
-            border-color: var(--primary-light);
+            background: rgba(196, 30, 58, 0.1);
+            border-color: rgba(196, 30, 58, 0.35);
             color: #fff;
-            box-shadow: inset 2px 0 0 var(--primary-light), 0 4px 15px rgba(0, 0, 0, 0.5);
         }
 
         .char-btn-symbol {
@@ -329,17 +251,15 @@
 
         /* ── CENTER: CHARACTER DISPLAY ── */
         .inv-char-display {
-            background: radial-gradient(circle at center, rgba(30, 15, 45, 0.6), rgba(5, 5, 10, 0.95));
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            border-radius: 16px;
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: var(--radius);
             display: flex;
             flex-direction: column;
             align-items: center;
             position: relative;
             overflow: hidden;
-            min-height: 550px;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6), inset 0 0 40px rgba(0, 0, 0, 0.8);
-            backdrop-filter: blur(15px);
+            min-height: 500px;
         }
 
         .char-portrait-area {
@@ -532,188 +452,99 @@
 
         /* ── RIGHT: INVENTORY GRID ── */
         .inv-grid-panel {
-            background: rgba(10, 5, 20, 0.6);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            border-radius: 12px;
-            padding: 1.25rem;
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: var(--radius);
+            padding: 1rem;
             display: flex;
             flex-direction: column;
-            max-height: 700px;
+            max-height: 620px;
             overflow-y: auto;
-            backdrop-filter: blur(10px);
-            box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.5);
         }
 
         .inv-filter-row {
             display: flex;
-            gap: 0.5rem;
+            gap: 0.4rem;
             flex-wrap: wrap;
-            margin-bottom: 1rem;
-            padding-bottom: 0.75rem;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            margin-bottom: 0.75rem;
         }
 
         .slot-filter-btn {
-            background: rgba(0, 0, 0, 0.3);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 6px;
-            color: var(--text-muted);
-            font-size: 0.65rem;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 100px;
+            color: var(--text-dim);
+            font-size: 0.6rem;
             font-weight: 700;
-            letter-spacing: 0.1em;
-            padding: 0.35rem 0.75rem;
+            letter-spacing: 0.08em;
+            padding: 0.2rem 0.55rem;
             cursor: pointer;
             text-transform: uppercase;
-            transition: all 0.25s cubic-bezier(0.2, 0.8, 0.2, 1);
+            transition: all 0.2s;
         }
 
         .slot-filter-btn.active,
         .slot-filter-btn:hover {
-            background: linear-gradient(135deg, rgba(196, 30, 58, 0.2), rgba(0, 0, 0, 0.4));
-            border-color: var(--primary-light);
-            color: #fff;
-            box-shadow: 0 2px 10px rgba(196, 30, 58, 0.2);
-            transform: translateY(-1px);
+            background: rgba(196, 30, 58, 0.1);
+            border-color: rgba(196, 30, 58, 0.3);
+            color: var(--primary-light);
         }
 
         .inv-items-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
-            gap: 0.75rem;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.5rem;
             flex: 1;
-            padding: 0.25rem;
-            /* Give shadow room to breathe */
-            align-content: start;
         }
 
         .inv-item-card {
-            background: linear-gradient(145deg, rgba(30, 20, 45, 0.75), rgba(15, 10, 25, 0.9));
-            border-radius: 12px;
-            padding: 2px;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: 8px;
+            padding: 0.7rem;
             cursor: pointer;
-            transition: all 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+            transition: all 0.22s;
             position: relative;
             display: flex;
             flex-direction: column;
-            overflow: hidden;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5), inset 0 0 0 1px rgba(255, 255, 255, 0.05);
-            isolation: isolate;
-            backdrop-filter: blur(8px);
+            gap: 0.3rem;
         }
 
-        .inv-item-card::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            border-radius: 12px;
-            padding: 1px;
-            background: linear-gradient(135deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0.02) 60%);
-            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-            mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-            -webkit-mask-composite: xor;
-            mask-composite: exclude;
-            z-index: 1;
-            transition: all 0.4s ease;
+        .inv-item-card:hover {
+            transform: translateY(-2px);
+            border-color: rgba(196, 30, 58, 0.25);
+            background: rgba(196, 30, 58, 0.05);
         }
 
-        .item-card-bg-glow {
-            position: absolute;
-            inset: 0;
-            z-index: 0;
-            opacity: 0.2;
-            transition: opacity 0.4s ease;
-            background: radial-gradient(circle at center, var(--item-color, rgba(196, 30, 58, 0.5)), transparent 70%);
+        .inv-item-card.locked {
+            opacity: 0.35;
+            cursor: not-allowed;
+            filter: grayscale(0.7);
         }
 
-        .inv-item-card:hover .item-card-bg-glow {
-            opacity: 0.6;
+        .inv-item-card.locked:hover {
+            transform: none;
+            border-color: rgba(255, 255, 255, 0.06);
+            background: rgba(255, 255, 255, 0.02);
         }
 
-        .inv-item-card:not(.locked):hover {
-            transform: translateY(-6px) scale(1.03);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.7), 0 0 25px var(--item-color, rgba(196, 30, 58, 0.3));
-        }
-
-        .inv-item-card:not(.locked):hover::before {
-            background: linear-gradient(135deg, var(--item-color, rgba(255, 255, 255, 0.5)), transparent);
-        }
-
-        .item-card-inner {
-            background: rgba(15, 10, 25, 0.85);
-            border-radius: 10px;
-            padding: 0.85rem;
-            display: flex;
-            gap: 0.85rem;
-            align-items: center;
-            height: 100%;
-            z-index: 2;
-        }
-
-        .item-card-icon-container {
-            width: 55px;
-            height: 55px;
-            background: radial-gradient(circle at top left, rgba(255, 255, 255, 0.1), transparent 80%);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            border-radius: 10px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-shrink: 0;
-            position: relative;
-            box-shadow: inset 0 2px 15px rgba(0, 0, 0, 0.6), 0 4px 10px rgba(0, 0, 0, 0.3);
-            overflow: hidden;
-            transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
-        }
-
-        .inv-item-card:hover .item-card-icon-container {
-            transform: scale(1.08) rotate(3deg);
-            border-color: rgba(255, 255, 255, 0.2);
-            box-shadow: inset 0 2px 15px rgba(0, 0, 0, 0.4), 0 8px 15px rgba(0, 0, 0, 0.4);
+        .inv-item-card.equipped-active {
+            border-color: var(--item-color, rgba(196, 30, 58, 0.4)) !important;
+            background: rgba(196, 30, 58, 0.08) !important;
+            box-shadow: 0 0 10px var(--item-color, rgba(196, 30, 58, 0.2));
         }
 
         .item-card-emoji {
-            font-size: 1.8rem;
+            font-size: 1.5rem;
             line-height: 1;
-            filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.5));
-            transition: filter 0.3s ease;
-        }
-
-        .item-card-image {
-            width: 90%;
-            height: 90%;
-            object-fit: contain;
-            filter: drop-shadow(0 2px 5px rgba(0, 0, 0, 0.8));
-            transition: filter 0.3s ease, transform 0.3s ease;
-        }
-
-        .inv-item-card:not(.locked):hover .item-card-emoji {
-            filter: drop-shadow(0 0 10px var(--item-color)) drop-shadow(0 0 20px var(--item-color));
-        }
-
-        .inv-item-card:not(.locked):hover .item-card-image {
-            filter: drop-shadow(0 0 8px var(--item-color)) drop-shadow(0 0 15px var(--item-color));
-            transform: scale(1.05);
-        }
-
-        .item-card-content {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            height: 100%;
-            min-width: 0;
+            filter: drop-shadow(0 0 6px var(--item-color));
         }
 
         .item-card-name {
-            font-size: 0.78rem;
-            font-weight: 800;
+            font-size: 0.68rem;
+            font-weight: 700;
             line-height: 1.25;
             color: #fff;
-            margin-bottom: 0.4rem;
-            text-wrap: balance;
-            font-family: 'Cinzel', serif;
-            letter-spacing: 0.04em;
-            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.9);
         }
 
         .item-card-meta {
@@ -723,114 +554,34 @@
             margin-top: auto;
         }
 
-        .item-rarity-badge {
-            font-size: 0.45rem;
-            font-weight: 800;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            padding: 0.15rem 0.35rem;
-            background: rgba(0, 0, 0, 0.5);
-            border: 1px solid;
-            border-radius: 3px;
-            text-shadow: 0 1px 2px rgba(0, 0, 0, 1);
+        .item-rarity-dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            flex-shrink: 0;
         }
 
         .item-card-ch {
             font-size: 0.55rem;
             font-weight: 700;
             color: var(--text-dim);
-            letter-spacing: 0.05em;
-            background: rgba(255, 255, 255, 0.05);
-            padding: 0.15rem 0.3rem;
-            border-radius: 3px;
+            letter-spacing: 0.06em;
         }
 
-        /* Status Indicators */
-        .item-equipped-indicator,
-        .item-locked-indicator {
+        .item-lock-icon {
             position: absolute;
-            top: -4px;
-            right: -4px;
-            width: 20px;
-            height: 20px;
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
-            z-index: 5;
+            top: 6px;
+            right: 6px;
+            font-size: 0.7rem;
+            opacity: 0.5;
         }
 
-        .item-equipped-indicator {
-            background: linear-gradient(135deg, #10b981, #047857);
-            border: 1.5px solid #064e3b;
-        }
-
-        .item-equipped-indicator svg {
-            width: 12px;
-            height: 12px;
-            color: white;
-            filter: drop-shadow(0 1px 1px rgba(0, 0, 0, 0.3));
-        }
-
-        .item-locked-indicator {
-            background: linear-gradient(135deg, #4b5563, #374151);
-            border: 1.5px solid #1f2937;
-        }
-
-        .item-locked-indicator svg {
-            width: 10px;
-            height: 10px;
-            color: #9ca3af;
-        }
-
-        .inv-item-card.equipped-active {
-            box-shadow: 0 0 0 1px var(--item-color, #10b981), 0 4px 15px rgba(0, 0, 0, 0.4), inset 0 0 20px rgba(16, 185, 129, 0.1);
-        }
-
-        .inv-item-card.equipped-active::before {
-            background: linear-gradient(to bottom, var(--item-color, #10b981), transparent);
-            opacity: 0.8;
-        }
-
-        .inv-item-card.locked {
-            opacity: 0.6;
-            cursor: not-allowed;
-            filter: grayscale(0.6) brightness(0.7);
-        }
-
-        .inv-item-card.locked:hover {
-            transform: none;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
-            filter: grayscale(0.5) brightness(0.8);
-        }
-
-        .inv-item-card.locked:hover::before {
-            background: linear-gradient(to bottom, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.02));
-        }
-
-        /* Shine Effect Array */
-        .item-card-shine {
+        .item-equipped-check {
             position: absolute;
-            top: 0;
-            left: -100%;
-            width: 50%;
-            height: 100%;
-            background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.1) 50%, transparent);
-            transform: skewX(-20deg);
-            z-index: 10;
-            pointer-events: none;
-            transition: none;
-        }
-
-        .inv-item-card:hover .item-card-shine {
-            animation: shine-sweep 0.7s ease-out forwards;
-        }
-
-        @keyframes shine-sweep {
-            100% {
-                left: 200%;
-            }
+            top: 5px;
+            right: 6px;
+            font-size: 0.7rem;
+            color: #4ade80;
         }
 
         .inv-item-card:not(.locked).slot-match-active {
@@ -841,33 +592,17 @@
         /* ── ITEM DETAIL TOOLTIP ── */
         .item-detail-panel {
             position: fixed;
-            width: 340px;
-            background: linear-gradient(145deg, rgba(25, 15, 35, 0.98), rgba(10, 5, 20, 0.99));
-            border: 1px solid rgba(255, 255, 255, 0.12);
-            border-radius: 14px;
-            padding: 1.75rem;
+            width: 280px;
+            background: #13131f;
+            border: 1px solid rgba(196, 30, 58, 0.3);
+            border-radius: var(--radius-sm);
+            padding: 1.25rem;
             z-index: 9999;
             pointer-events: none;
             opacity: 0;
-            transform: translateY(15px) scale(0.96);
-            transition: opacity 0.3s cubic-bezier(0.2, 0.8, 0.2, 1), transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
-            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.9), inset 0 0 0 1px rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(12px);
-            isolation: isolate;
-        }
-
-        .item-detail-panel::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 100px;
-            background: radial-gradient(ellipse at top, var(--rarity-color, rgba(196, 30, 58, 0.2)), transparent 70%);
-            opacity: 0.6;
-            z-index: -1;
-            pointer-events: none;
-            border-radius: 12px 12px 0 0;
+            transform: translateY(6px) scale(0.97);
+            transition: all 0.18s ease;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.7);
         }
 
         .item-detail-panel.show {
@@ -880,19 +615,6 @@
             font-size: 2.2rem;
             line-height: 1;
             margin-bottom: 0.6rem;
-            border-radius: 8px;
-            overflow: hidden;
-            display: flex;
-            justify-content: center;
-        }
-
-        /* New rules specifically for controlling the giant AI images inside the panel */
-        .idp-emoji img {
-            max-height: 15rem;
-            width: 100%;
-            object-fit: contain;
-            border-radius: 8px;
-            margin-bottom: 0.5rem;
         }
 
         .idp-rarity {
@@ -1050,57 +772,27 @@
             border-radius: 2px;
         }
     </style>
-    <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "CollectionPage",
-        "name": "Shadow Slave Inventory Tracker",
-        "description": "Track Memories, Echoes, and Shadows in this interactive RPG-style inventory.",
-        "url": "https://rift-shadowslave.github.io/inventory.html"
-    }
-    </script>
 </head>
 
 <body>
     <canvas id="bg-canvas"></canvas>
 
     <!-- NAV -->
-    <nav class="navbar" id="navbar">
+    <nav class="nav" id="nav">
         <div class="nav-inner">
-            <a href="index.html" class="nav-logo">
-                <span class="logo-icon">⟁</span>
+            <a href="index.html" class="logo">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                    <polygon points="12,2 22,20 2,20" stroke="var(--primary)" stroke-width="2" fill="none" />
+                    <polygon points="12,7 18,18 6,18" fill="var(--primary)" opacity="0.3" />
+                </svg>
                 <span class="logo-text">RIFT</span>
             </a>
-                        <div class="nav-links">
+            <div class="nav-links">
                 <a href="characters.html">Characters</a>
                 <a href="recap.html">Recap</a>
                 <a href="lore.html">Lore</a>
-                <a href="inventory.html">Inventory</a>
-                <a href="map.html">World Map</a>
-                <a href="portraits.html">Portraits</a>
-                <a href="quiz.html">Quiz</a>
-                <a href="compare.html">Compare</a>
-                <a href="cards.html">Cards</a>
                 <a href="community.html">Community</a>
             </div>
-            <div class="nav-sync" title="Spoiler-Free Sync: Hide content beyond this chapter" style="display:flex; align-items:center; gap:0.5rem; margin-right: 1rem;">
-                <span style="font-size:0.7rem; color:#a1a1aa; font-weight:600; text-transform:uppercase; letter-spacing:0.05em;">Chapter Sync:</span>
-                <input type="number" id="global-chapter-sync" placeholder="Max" style="width:65px; padding:0.4rem; background:rgba(0,0,0,0.5); border:1px solid rgba(255,255,255,0.1); border-radius:6px; color:white; font-family:monospace; font-size:0.85rem; outline:none; transition: border-color 0.3s;" />
-            </div>
-            <a href="characters.html" class="nav-cta">Enter the Rift</a>
-            <button class="hamburger" id="hamburger" onclick="document.getElementById('mobile-menu').classList.toggle('open')"><span></span><span></span><span></span></button>
-        </div>
-        <div class="mobile-menu" id="mobile-menu">
-            <a href="characters.html">Characters</a>
-            <a href="recap.html">Recap</a>
-            <a href="lore.html">Lore</a>
-            <a href="inventory.html">Inventory</a>
-            <a href="map.html">World Map</a>
-            <a href="portraits.html">Portraits</a>
-            <a href="quiz.html">Quiz</a>
-            <a href="compare.html">Compare</a>
-            <a href="cards.html">Cards</a>
-            <a href="community.html">Community</a>
             <a href="characters.html" class="nav-cta">Enter the Rift</a>
         </div>
     </nav>
@@ -1114,18 +806,23 @@
         </div>
 
         <!-- HERO -->
-        <div class="inv-hero" style="position: relative; z-index: 1;">
-            <div class="hero-glow"
-                style="top: -50%; left: 50%; transform: translateX(-50%); width: 800px; height: 400px; opacity: 0.7; z-index: -1;">
-            </div>
+        <div class="inv-hero">
             <div class="inv-badge">🎮 RPG INVENTORY</div>
             <h1 class="inv-title">Character Inventory</h1>
             <p class="inv-sub">Explore every weapon, armor and ability — unlocked chapter by chapter. Equip items to see
                 how your character looks.</p>
         </div>
 
-        <!-- Chapter Sync is now handled globally in the Navbar -->
-        <div style="margin-bottom: 2.5rem;"></div>
+        <!-- CHAPTER CONTROL BAR -->
+        <div class="chapter-bar">
+            <span class="chapter-bar-label">📍 You're on Chapter</span>
+            <div class="chapter-input-group">
+                <span style="color:var(--text-dim);font-size:0.8rem">#</span>
+                <input type="number" class="chapter-input" id="user-chapter-input" value="50" min="1" max="1300" />
+            </div>
+            <button class="chapter-apply-btn" id="apply-chapter-btn">Update Inventory</button>
+            <span class="chapter-unlock-info" id="unlock-info"></span>
+        </div>
 
         <!-- 3-PANEL LAYOUT -->
         <div class="inv-layout">
@@ -1213,12 +910,9 @@
         </div>
     </footer>
 
-    <!-- Scripts -->
     <script src="data.js"></script>
     <script src="app.js"></script>
-    <script src="engine.js"></script>
     <script src="inventory.js"></script>
 </body>
 
 </html>
-
