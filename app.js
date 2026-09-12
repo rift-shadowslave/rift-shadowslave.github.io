@@ -327,7 +327,7 @@ document.addEventListener('DOMContentLoaded', () => {
 // ---- ACHIEVEMENT SYSTEM ----
 document.addEventListener('DOMContentLoaded', () => {
     // Inject Achievements UI Modal
-    const modalHTML = \
+    const modalHTML = `
     <div id="achievements-modal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.85); z-index:9999; backdrop-filter:blur(5px); justify-content:center; align-items:center;">
         <div style="background:var(--card-bg); border:1px solid var(--card-border); border-radius:var(--radius); width:90%; max-width:600px; max-height:80vh; overflow-y:auto; padding:2rem; position:relative;">
             <button id="close-achievements" style="position:absolute; top:1rem; right:1rem; background:none; border:none; color:white; font-size:1.5rem; cursor:pointer;">&times;</button>
@@ -335,7 +335,7 @@ document.addEventListener('DOMContentLoaded', () => {
             <div id="achievements-list" style="display:flex; flex-direction:column; gap:1rem;"></div>
         </div>
     </div>
-    \;
+    `;
     document.body.insertAdjacentHTML('beforeend', modalHTML);
 
     // Inject Button in Footer

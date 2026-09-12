@@ -426,6 +426,376 @@ const RIFT_DATA = {
         { ch: 1974, type: "lore", spoiler: 3, text: "Sovereign Domains.", loreDetail: "Further structural mechanics are detailed regarding how Anvil of Valor and Ki Song project their Sovereign Domains through local Citadel footholds and soul essence anchors across the Dream Realm." },
         { ch: 1989, type: "event", spoiler: 3, text: "The War for Godgrave.", textDetail: "The latest chapters. Clan Valor and Clan Song's expeditionary forces wage full-scale war within Godgrave — the petrified corpse of a fallen deity. Sunny operates through his divided incarnations, fighting as the Lord of Shadows while maintaining his cover as a memory shopkeeper in Bastion. The Domain War is at its most brutal and intense phase yet." }
     ]
+    ,
+    inventoryItems: {
+
+        sunny: [
+            {
+                id: "s1", name: "Rusted Shiv",
+                image: 'assets/items/rusted_shiv.png', slot: "weapon", ch: 1, rarity: "common", emoji: "🗡️", color: "#888", desc: "A crude blade scavenged on the first night of the First Nightmare. Sunny's first real weapon — barely sharp, but kept him alive.", stat: "ATK +5 | Durability: Low"
+            },
+            {
+                id: "s2", name: "Shadow Coin Pouch",
+                image: 'assets/items/shadow_coin_pouch.png', slot: "accessory", ch: 2, rarity: "uncommon", emoji: "💰", color: "#FFD700", desc: "The tangible manifestation of the Cursed Aspect. Shadow coins are Sunny's true currency — each one grants a choice instead of a power.", stat: "Aspect Resource | Regenerates in Nightmare"
+            },
+            {
+                id: "s3", name: "Nightmare Leather Garb",
+                image: 'assets/items/nightmare_leather_garb.png', slot: "armor", ch: 5, rarity: "common", emoji: "🧥", color: "#4A4A6A", desc: "Crude armor crafted from nightmare creature hide during the First Nightmare survival arc. It absorbed several fatal blows.", stat: "DEF +8 | Nightmare Resistance: Low"
+            },
+            {
+                id: "s13", name: "Mask of the Nameless",
+                image: 'assets/items/mask_of_nameless.png', slot: "accessory", ch: 30, rarity: "legendary", emoji: "🎭", color: "#2D0A3A", desc: "Sunny's most critical non-combat tool — a featureless dark mask worn to conceal his Awakened aura. Anyone looking at him through the mask sees only a Dormant with no power. His defining survival tool for hiding his true strength from allies and enemies alike.", stat: "Power Concealment: 100% | Rank Hidden | Aura: Dormant-level"
+            },
+            {
+                id: "s4", name: "Iron Nightmare Blade",
+                image: 'assets/items/iron_nightmare_blade.png', slot: "weapon", ch: 50, rarity: "uncommon", emoji: "⚔️", color: "#7CA9C4", desc: "A solid weapon claimed after surviving the First Nightmare exit trial. Forged in nightmare iron — heavier than it looks, holds an edge.", stat: "ATK +22 | Durability: High | Nightmare-Iron"
+            },
+            {
+                id: "s5", name: "Shadow Cloak",
+                image: 'assets/items/shadow_cloak.png', slot: "cloak", ch: 60, rarity: "rare", emoji: "🌑", color: "#1A1A3A", desc: "A cloak woven from condensed shadow essence — the first physical manifestation of Sunny's growing shadow aspect outside of combat.", stat: "Stealth +30 | Shadow Sense enabled | Visual concealment"
+            },
+            {
+                id: "s14", name: "Bone Nightmare Pauldrons",
+                image: 'assets/items/bone_pauldrons.png', slot: "armor", ch: 70, rarity: "rare", emoji: "🦴", color: "#5A4A3A", desc: "Shoulder guards crafted from the bones of a Master-rank nightmare creature. They harden Sunny's upper body against slashing attacks.", stat: "DEF +28 | Slash Resistance | Master-Bone: reduces pain"
+            },
+            {
+                id: "s6", name: "Shade's Binding",
+                image: 'assets/items/shades_binding.png', slot: "offhand", ch: 80, rarity: "rare", emoji: "👁️", color: "#C41E3A", desc: "The first echo — 'Shade' — bound to Sunny's will. Not held physically, but worn as a dark aura around the off-hand that extends into shadow.", stat: "Summons Shade | Echo Control I | Shadow Perception"
+            },
+            {
+                id: "s15", name: "Echo Whisper",
+                image: 'assets/items/echo_whisper.png', slot: "special", ch: 100, rarity: "rare", emoji: "🌀", color: "#3A1A5A", desc: "An ability crystallized from Sunny's aspect — allows him to hear through any echo's senses regardless of distance. Critical for reconnaissance.", stat: "Echo Perception | Range: Unlimited | Sensory Link: all echoes"
+            },
+            {
+                id: "s7", name: "Veil of Shadow",
+                image: 'assets/items/veil_of_shadow.png', slot: "cloak", ch: 180, rarity: "legendary", emoji: "🌒", color: "#6B21A8", desc: "A deeper manifestation of the shadow cloak — fully able to bend light around Sunny, rendering him practically invisible in darkness.", stat: "Stealth +75 | True Concealment | Shadow Walk I"
+            },
+            {
+                id: "s16", name: "Carapace of Night",
+                image: 'assets/items/carapace_of_night.png', slot: "armor", ch: 220, rarity: "legendary", emoji: "🛡️", color: "#1A0A2E", desc: "Full-body armor grown from hardened shadow mass — not manufactured but manifested. It repairs itself by consuming nearby shadows.", stat: "DEF +50 | Self-Repair | Shadow Absorption: 25% dmg"
+            },
+            { id: "s8", name: "Echo Commander's Seal", slot: "accessory", ch: 300, rarity: "legendary", image: 'assets/items/echo_commanders_seal.png', color: "#C41E3A", desc: "The crescent sigil that appears on Sunny's palm as his echo army exceeds 25. Commands coordinated tactical formation attacks.", stat: "Echo Command +25 | Formation Tactics | Shadow Sync" },
+            { id: "s17", name: "Thorn of Nightmare", slot: "weapon", ch: 380, rarity: "legendary", image: 'assets/items/thorn_of_nightmare.png', color: "#2A0A4A", desc: "A slim shadow-blade that grows from Sunny's forearm on command — functionally a part of his body. Cuts nightmare essence cleanly.", stat: "ATK +60 | Bodypart Weapon | Nightmare Sever | No Disarm" },
+            { id: "s9", name: "Shadow Aspect Armor", slot: "armor", ch: 420, rarity: "legendary", image: 'assets/items/shadow_aspect_armor.png', color: "#1A0A2E", desc: "Armor that does not exist in the waking world — manifested fully from shadow mass upon reaching Refined rank. Absorbs non-light damage.", stat: "DEF +65 | Shadow Absorption | Rank: Refined" },
+            {
+                id: "s18", name: "Dream Ring — Nightmare Heart",
+                image: 'assets/items/dream_ring.png', slot: "accessory", ch: 450, rarity: "mythic", emoji: "💍", color: "#8B0050", desc: "A crystallized nightmare heart worn as a ring — it pulses with dream energy and amplifies Sunny's aspect in the nightmare realm by 40%.", stat: "Nightmare ATK/DEF +40% | Dream Anchor | Anti-Wake"
+            },
+            { id: "s10", name: "Blade of Severed Light", slot: "weapon", ch: 500, rarity: "legendary", image: 'assets/items/blade_of_severed_light.png', color: "#4B0082", desc: "A shadow-forged blade that cuts both physical matter and nightmare essence. The edge is visible only to those with nightmare perception.", stat: "ATK +80 | Essence Cut | Ignores 40% armor" },
+            {
+                id: "s19", name: "Nameless Fragment — The Dreamless",
+                image: 'assets/items/nameless_fragment.png', slot: "special", ch: 600, rarity: "mythic", emoji: "⬛", color: "#0A0004", desc: "An aspect of Sunny's identity crystallized as an object — the Dreamless nature. He is the only Awakened who does not dream, which makes him invisible to certain nightmare detection systems.", stat: "Dream Invisibility | Nightmare Detection: immune | Dreamless State"
+            },
+            {
+                id: "s11", name: "Shadow General's Mantle",
+                image: 'assets/items/shadow_general_mantle.png', slot: "cloak", ch: 750, rarity: "mythic", emoji: "🌑", color: "#3D0066", desc: "The 'general-tier' echo army signifier — a living cloak of shadows that responds to battlefield commands autonomously. Extremely rare.", stat: "Echo Command +73 | Auto-Formation | Master Rank Req."
+            },
+            {
+                id: "s12", name: "Sovereign's Shadow Seal",
+                image: 'assets/items/sovereign_shadow_seal.png', slot: "special", ch: 900, rarity: "mythic", emoji: "☾", color: "#0A0014", desc: "The absolute manifestation of Sunny's Master-rank shadow aspect. A seal that can create shadow territory — a domain where all light is consumed.", stat: "Shadow Territory | Domain: 200m | Master Rank"
+            },
+            { id: "s20", name: "Saint-Rank Shadow Core", image: 'assets/items/saint_rank_shadow_core.png', slot: "special", ch: 1150, rarity: "mythic", emoji: "⬛", color: "#0A001A", desc: "The manifestation of Sunny's Saint-rank shadow aspect — shadows become semi-real, able to affect the physical world directly. This core pulses with the weight of a hundred echoes.", stat: "Shadow Mass +200% | Physical Density | Echo Sync: 100 shadows" },
+            { id: "s21", name: "Chain Breaker Compass", image: 'assets/items/chain_breaker_compass.png', slot: "accessory", ch: 1480, rarity: "mythic", emoji: "🧭", color: "#0EA5E9", desc: "Navigational instrument from the Chain Breaker — the ship that carried the cohort down the Great River. It points not toward north, but toward the Estuary: the mouth of time itself.", stat: "Navigation: Great River | Temporal Read | Anti-Vortex" },
+            { id: "s22", name: "The Forgotten Seal", image: 'assets/items/the_forgotten_seal.png', slot: "special", ch: 1600, rarity: "mythic", emoji: "🕳️", color: "#000000", desc: "After transcending the Spell, this seal appeared on Sunny's soul — invisible to everyone because no one remembers he exists. It represents his freedom from the Spell and his complete isolation from humanity.", stat: "Spell Transcendence | Memory Erasure: global | Outside the Spell" },
+        ],
+
+        nephis: [
+            { id: "n1", name: "Memory Clan Robe", slot: "armor", ch: 5, rarity: "uncommon", image: 'assets/items/memory_clan_robe.png', color: "#C8A882", desc: "Nephis arrived in the First Nightmare wearing her clan's ceremonial robes — woven with memory-enchanted thread. Elegant despite the battlefield.", stat: "DEF +6 | Memory Resistance | Clan Heritage" },
+            { id: "n2", name: "Flame Edge Dagger", slot: "weapon", ch: 5, rarity: "uncommon", image: 'assets/items/flame_edge_dagger.png', color: "#FF6B00", desc: "Nephis's primary sidearm through the early arcs — a dagger that ignites with her flame aspect on contact. Precise, controlled, devastating.", stat: "ATK +18 | Flame Edge: Burns on strike | Fast Draw" },
+            { id: "n3", name: "Flame Aspect Bracer", slot: "accessory", ch: 10, rarity: "rare", image: 'assets/items/flame_aspect_bracer.png', color: "#FF8C00", desc: "Bracers that channel Nephis's flame aspect — allowing sustained flame projection without scorching her own hands.", stat: "Flame Control +20 | Sustained Burn | Aspect Channel" },
+            {
+                id: "n4", name: "White Flame Sword",
+                image: 'assets/items/white_flame_sword.png', slot: "weapon", ch: 100, rarity: "rare", emoji: "⚡", color: "#FFF5E0", desc: "A blade that burns with Nephis's abnormal white flame — not orange like normal fire. It sears nightmare essence directly.", stat: "ATK +45 | White Flame | Nightmare Sear | Anti-Shadow"
+            },
+            { id: "n5", name: "Flame Aspect Veil", slot: "cloak", ch: 150, rarity: "rare", image: 'assets/items/flame_aspect_veil.png', color: "#FFD700", desc: "A veil of accumulated flame aura — not actual cloth, but solidified heat that follows Nephis like a corona when she moves at speed.", stat: "Flame Aura: passive burn field | DEF +15 | Intimidation" },
+            { id: "n6", name: "Memory Clan Guardian Shield", slot: "offhand", ch: 200, rarity: "legendary", image: 'assets/items/memory_clan_guardian_shield.png', color: "#8B7355", desc: "The Memory Clan's combat shield — engraved with the clan's founding memory-seals. Deflects both physical and memory-based attacks.", stat: "DEF +50 | Memory Seal: Resist memory disruption | Block" },
+            { id: "n7", name: "Cold White Flame Armor", slot: "armor", ch: 250, rarity: "legendary", image: 'assets/items/cold_white_flame_armor.png', color: "#E0F4FF", desc: "After Nephis's flame turns cold-white in the Tomb of Ariel, her armor transforms — appearing as frozen white fire that burns absolutely.", stat: "DEF +70 | Cold Flame Absorption | Absolute Zero field" },
+            { id: "n8", name: "Flame Sovereign's Crown", slot: "accessory", ch: 400, rarity: "mythic", image: 'assets/items/flame_sovereigns_crown.png', color: "#FFD700", desc: "Not a literal crown — a permanent manifestation of Nephis's flame aspect at its peak. The white flame forms a halo above her head in battle.", stat: "Flame Domain +50m | City-Scale Flame | Transcendent Aura" },
+            { id: "n9", name: "Memory Clan Champion Blade", slot: "weapon", ch: 500, rarity: "mythic", image: 'assets/items/memory_clan_champion_blade.png', color: "#FFEAA0", desc: "The Memory Clan's champion-grade weapon, formally granted to Nephis after her Refined rank advancement. Holds clan memories as power.", stat: "ATK +90 | Memory Resonance | Aspect Amplifier x2" },
+            { id: "n10", name: "Desert Flame Mantle", image: 'assets/items/desert_flame_mantle.png', slot: "cloak", ch: 1260, rarity: "mythic", emoji: "🔥", color: "#FF4500", desc: "During the month-long training with Sunny on the giant turtle in the Nightmare Desert, Nephis's flame aspect evolved once more — manifesting as a permanent mantle of heat that bends the air around her.", stat: "Flame Aura +100% | Heat Distortion | Desert Survival" },
+            { id: "n11", name: "Transcendent Flame Crown", image: 'assets/items/transcendent_flame_crown.png', slot: "accessory", ch: 1500, rarity: "mythic", emoji: "👑", color: "#FFD700", desc: "The ultimate manifestation of Nephis's Transcendent-rank flame aspect. The white flame forms a permanent ethereal crown that burns reality itself — visible only to those with nightmare perception.", stat: "Transcendent Aura | Reality Burn | Flame Domain: 100m" },
+        ],
+
+        cassie: [
+            { id: "c1", name: "Sightless Circlet", slot: "accessory", ch: 3, rarity: "uncommon", image: 'assets/items/sightless_circlet.png', color: "#9B59B6", desc: "A simple circlet Cassie wore from the beginning — it doesn't provide vision, but amplifies her prophecy aspect's thread-perception.", stat: "Prophecy Range: +50m | Thread Count: +10 | Focus" },
+            { id: "c2", name: "Thread-Sight Staff", slot: "weapon", ch: 3, rarity: "rare", image: 'assets/items/thread_sight_staff.png', color: "#7D3C98", desc: "A wooden staff Cassie uses to navigate without sight. The wood is from a nightmare tree — it resonates with fate threads.", stat: "ATK +8 | Fate Thread Sensor | Navigation in Darkness" },
+            { id: "c3", name: "Prophecy Shroud", slot: "cloak", ch: 30, rarity: "rare", image: 'assets/items/prophecy_shroud.png', color: "#2C1654", desc: "A dark cloak that swirls with faint starlight patterns when Cassie is actively seeing prophecies. Other Awakened find it unsettling.", stat: "Prophecy Stability +30 | Intimidation field: Seer" },
+            { id: "c4", name: "Blind Oracle's Focus", slot: "offhand", ch: 50, rarity: "rare", image: 'assets/items/blind_oracles_focus.png', color: "#8A2BE2", desc: "A crystal orb Cassie uses to anchor large-scale prophecies — prevents her from getting lost in far-future visions.", stat: "Prophecy Anchor | Range +100% | Vision Stability" },
+            { id: "c5", name: "Fate Thread Blade", slot: "weapon", ch: 100, rarity: "legendary", image: 'assets/items/fate_thread_blade.png', color: "#6C3483", desc: "A knife Cassie carries — enchanted to cut fate threads in the physical world. She uses it when a vision shows a thread that must be severed.", stat: "ATK +30 | Thread Cut: severs minor fate events | Anti-Destiny" },
+            { id: "c6", name: "Seer's Robes", slot: "armor", ch: 150, rarity: "legendary", image: 'assets/items/seers_robes.png', color: "#4A235A", desc: "Robes that adapt to the shape of emerging prophecies — patterns shift and change on the fabric as new futures present themselves.", stat: "DEF +25 | Prophecy Clarity +50 | Future Sight: passive" },
+            { id: "c7", name: "Oracle's Chain", slot: "accessory", ch: 540, rarity: "mythic", image: 'assets/items/oracles_chain.png', color: "#9B59B6", desc: "After Cassie's prophecy aspect evolves to multi-day temporal range, this chain manifests — binding her to the present despite seeing days ahead.", stat: "Temporal Anchor | Prophecy Range: 72hrs | Present Lock" },
+            { id: "c8", name: "Time Loop Thread", image: 'assets/items/time_loop_thread.png', slot: "special", ch: 1436, rarity: "mythic", emoji: "🔮", color: "#22D3EE", desc: "On Wind Flower Island, Cassie's Prophecy Aspect allowed her to perceive the time loop's structure differently — she sensed fate threads doubling and re-weaving. This crystallized thread is a remnant of that awareness.", stat: "Temporal Perception | Loop Detection | Thread Vision" },
+            { id: "c9", name: "Estuary Vision Stone", image: 'assets/items/estuary_vision_stone.png', slot: "offhand", ch: 1570, rarity: "mythic", emoji: "💎", color: "#7C3AED", desc: "At the Estuary, Cassie witnessed the revelation of the Seven Gods alongside Sunny. This vision stone preserves the prophetic resonance of that moment — the truth of the Forgotten God imprinted into crystal.", stat: "Lore Anchor | Forgotten God Resonance | Prophecy: Divine-tier" },
+        ],
+
+        effie: [
+            { id: "e1", name: "Iron Gauntlets", slot: "offhand", ch: 4, rarity: "uncommon", image: 'assets/items/iron_gauntlets.png', color: "#708090", desc: "Effie's preferred combat tool — iron gauntlets that reinforce her naturally superhuman punch force. She's never without them.", stat: "ATK +15 | Punch Force x2 | Bone Break chance: 20%" },
+            { id: "e2", name: "Hunt Aspect Wraps", slot: "accessory", ch: 4, rarity: "rare", image: 'assets/items/hunt_aspect_wraps.png', color: "#2ECC71", desc: "Binding wraps that channel Effie's Hunt Aspect through her limbs — allowing her to track nightmare creatures by touch alone.", stat: "Hunt Tracking | Touch Perception | Speed +20%" },
+            { id: "e3", name: "Nightmare Hide Plate", slot: "armor", ch: 20, rarity: "uncommon", image: 'assets/items/nightmare_hide_plate.png', color: "#556B2F", desc: "Heavy armor plates skinned from Awakened-class nightmare creatures. Effie cobbled it together herself — messy, heavy, very effective.", stat: "DEF +35 | Weight: Heavy | Nightmare Resistance: Mid" },
+            { id: "e4", name: "Huntress Greatsword", slot: "weapon", ch: 50, rarity: "rare", image: 'assets/items/huntress_greatsword.png', color: "#228B22", desc: "An oversized blade suited to Effie's strength — most Awakened couldn't swing it, but she does so with terrifying speed.", stat: "ATK +55 | Two-handed | Cleave: hits 3 targets | Heavy" },
+            { id: "e5", name: "Beast Pelt Cloak", slot: "cloak", ch: 100, rarity: "rare", image: 'assets/items/beast_pelt_cloak.png', color: "#2D5A27", desc: "A cloak of woven nightmare beast pelts — they retain a faint hunt aura, making Effie harder to detect by scent or noise.", stat: "Stealth +20 | Hunt Aura | Beast Deterrent field" },
+            { id: "e6", name: "Hunt Constellation Armbands", slot: "accessory", ch: 650, rarity: "mythic", image: 'assets/items/hunt_constellation_armbands.png', color: "#00FF7F", desc: "Upon reaching Master rank, Effie's Hunt Aspect forms visible constellation patterns on her skin. The armbands are the physical focus.", stat: "Hunt Domain | Nightmare Command: passive | Master Rank" },
+            { id: "e7", name: "Alpha Predator Armor", slot: "armor", ch: 650, rarity: "mythic", image: 'assets/items/alpha_predator_armor.png', color: "#006400", desc: "Post-Master rank armor — nightmare creatures of Awakened class instinctively submit when they see this armor, recognizing the Hunt Aspect's dominance.", stat: "DEF +110 | Creature Submission aura | Physical: x3 baseline" },
+            { id: "e8", name: "Iron Fist of the Hunt", slot: "weapon", ch: 900, rarity: "mythic", image: 'assets/items/iron_fist_of_the_hunt.png', color: "#008000", desc: "Effie's Master-rank weapon — an iron gauntlet infused with Hunt Aspect essence. Each punch creates a shockwave that stuns everything within 10m.", stat: "ATK +100 | Shockwave: 10m stun | Nightmare Crush | Master" },
+            { id: "e9", name: "Great River War Plate", image: 'assets/items/great_river_war_plate.png', slot: "armor", ch: 1480, rarity: "mythic", emoji: "🛡️", color: "#004D00", desc: "Armor reinforced during the Great River journey — nightmare creature bone plated with river-titan scales. Effie assembled it from kills during the perilous voyage.", stat: "DEF +130 | River Resistance | Temporal Shielding" },
+            { id: "e10", name: "Mother's Resolve Gauntlets", image: 'assets/items/mothers_resolve_gauntlets.png', slot: "offhand", ch: 1600, rarity: "mythic", emoji: "🤲", color: "#00CC00", desc: "After Sunny's transcendence, Effie no longer remembers her battle companion. But her Supreme Memory farm thrives, and her son Little Ling — born as a Saint — is her new priority. These gauntlets are softer, designed for holding rather than hitting.", stat: "Saint-Child Containment | Physical: x4 | Farm Protection Mode" },
+        ],
+
+        kai: [
+            { id: "k1", name: "Arrow Clan Recurve Bow", slot: "weapon", ch: 5, rarity: "uncommon", image: 'assets/items/arrow_clan_recurve_bow.png', color: "#8B4513", desc: "Kai's primary weapon — an Arrow Clan precision recurve bow. The clan's mark is carved into the grip. Every shot is calculated.", stat: "ATK +20 | Precision: +40% | Range: 300m | Silent" },
+            { id: "k2", name: "Clan Quiver — 24 Arrows", slot: "offhand", ch: 5, rarity: "uncommon", image: 'assets/items/clan_quiver_24_arrows.png', color: "#A0522D", desc: "Arrow Clan signature arrows — fletched with nightmare raven feathers that stabilize trajectory in dimensional winds.", stat: "Arrow Capacity: 24 | Trajectory Stable | Piercing" },
+            { id: "k3", name: "Hunter's Vest", slot: "armor", ch: 20, rarity: "uncommon", image: 'assets/items/hunters_vest.png', color: "#6B5844", desc: "Light combat vest favored by Arrow Clan scouts — padded in the right places, open enough for full draw motion.", stat: "DEF +15 | Mobility: High | Draw Speed: +25%" },
+            { id: "k4", name: "Phantom Arrow Quiver", slot: "offhand", ch: 350, rarity: "legendary", image: 'assets/items/phantom_arrow_quiver.png', color: "#4169E1", desc: "After Refined rank — his arrows no longer need to follow physics. The quiver holds arrows that exist in perceptual space until they strike.", stat: "Phantom Trajectory | Curve: any angle | Invisible path" },
+            { id: "k5", name: "Archer's Longcloak", slot: "cloak", ch: 100, rarity: "rare", image: 'assets/items/archers_longcloak.png', color: "#1C3A5E", desc: "A long dark cloak designed to break silhouette — when Kai is still, he is essentially invisible against any natural backdrop.", stat: "Stealth +45 | Silhouette Break | Observation Resistance" },
+            { id: "k6", name: "Arrow Clan Intelligence Seal", slot: "accessory", ch: 350, rarity: "legendary", image: 'assets/items/arrow_clan_intelligence_seal.png', color: "#191970", desc: "After Kai reveals clan intel to Sunny — a personal seal that marks him as outside clan authority. It carries intelligence from clan archives.", stat: "Intel Access | Clan Network | Counter-Tracking" },
+            { id: "k7", name: "Phantom Archer Armor", slot: "armor", ch: 820, rarity: "mythic", image: 'assets/items/phantom_archer_armor.png', color: "#000080", desc: "Master rank armor that bends light slightly — Kai appears as a distortion rather than a person when wearing this at range.", stat: "DEF +80 | Light Bend | Location Confusion | Master Rank" },
+            { id: "k8", name: "Star-Path Composite Bow", slot: "weapon", ch: 820, rarity: "mythic", image: 'assets/items/star_path_composite_bow.png', color: "#4682B4", desc: "Kai's Master rank weapon — a bow strung with condensed arrow aspect. The string appears as a line of starlight. Draws itself.", stat: "ATK +95 | Self-Draw | Range: 2000m | Aspect Amplified" },
+        ],
+
+        morgans: [
+            { id: "m1", name: "Blood Faction Robes", slot: "armor", ch: 120, rarity: "uncommon", image: 'assets/items/blood_faction_robes.png', color: "#8B0000", desc: "The signature deep crimson robes of the Blood Faction — woven with blood-sealing thread that prevents external manipulation of the wearer's blood.", stat: "DEF +20 | Blood Seal: self | Anti-Blood: resist" },
+            { id: "m2", name: "Sanguine Dagger", slot: "weapon", ch: 120, rarity: "rare", image: 'assets/items/sanguine_dagger.png', color: "#DC143C", desc: "Morgan's blade — forged with blood-iron alloy. Contact with blood (friend or enemy) triggers the blood manipulation aspect.", stat: "ATK +30 | Blood Trigger: on cut | Aspect Activation" },
+            { id: "m3", name: "Bloodweave Gloves", slot: "offhand", ch: 120, rarity: "rare", image: 'assets/items/bloodweave_gloves.png', color: "#A00000", desc: "Thin gloves that allow Morgan to shape and project blood at range without physical contact — a signature Blood Faction technique.", stat: "Blood Range: 30m | Projection | No Contact Required" },
+            { id: "m4", name: "Pallid Mask", slot: "accessory", ch: 130, rarity: "legendary", image: 'assets/items/pallid_mask.png', color: "#DC143C", desc: "A bone-white mask Morgan wears in high-stakes encounters — it conceals his Awakened aura, making his rank undetectable.", stat: "Aura Concealment | Rank Hidden | Intimidation: extreme" },
+            { id: "m5", name: "Blood Ritual Tome", slot: "special", ch: 200, rarity: "legendary", image: 'assets/items/blood_ritual_tome.png', color: "#8B0000", desc: "A tome containing Blood Faction ritual techniques — amplification rituals that push power beyond normal rank limits at physical cost.", stat: "Ritual: Power x1.5 | Cost: HP 30% | Blood Beyond Rank" },
+            { id: "m6", name: "Crimson War Plate", slot: "armor", ch: 280, rarity: "legendary", image: 'assets/items/crimson_war_plate.png', color: "#B22222", desc: "Armor assembled from nightmare creature bone plated with blood-iron. Morgan's personal combat gear for serious engagements.", stat: "DEF +60 | Blood Absorption | Self-Heal: 5% on kill" },
+            { id: "m7", name: "Sovereign Blood Seal", slot: "special", ch: 1050, rarity: "mythic", image: 'assets/items/sovereign_blood_seal.png', color: "#4A0000", desc: "After Morgan's deepening Blood Faction allegiances — a seal that marks him as aligned with forces beyond the Great Clans. Its true purpose is unknown.", stat: "Unknown Power | Sovereign Link | Blood Domain: 500m" },
+        ],
+
+        jet: [
+            { id: "j1", name: "Soul Reaper's Scythe", slot: "weapon", ch: 55, rarity: "legendary", image: 'assets/items/soul_reapers_scythe.png', color: "#4169E1", desc: "Jet's Aspect Legacy — a chilling mist that solidifies into a deadly scythe. The blade bypasses physical armor entirely, striking directly at the enemy's soul. One of the most feared weapons in the Awakened world.", stat: "ATK +85 | Soul Strike | Armor Bypass: 100% | Mist Form" },
+            { id: "j2", name: "First Army Officer's Coat", slot: "armor", ch: 55, rarity: "legendary", image: 'assets/items/first_army_officers_coat.png', color: "#1C3A5E", desc: "Colonel Jet's military coat — reinforced with nightmare-grade thread. Carries the insignia of the First Awakened Irregular Company. Practical, efficient, and terrifying when stained.", stat: "DEF +70 | Military Grade | Rank: Colonel | Authority Aura" },
+            { id: "j3", name: "Soul Essence Siphon", slot: "accessory", ch: 100, rarity: "mythic", image: 'assets/items/soul_essence_siphon.png', color: "#2C1654", desc: "Jet's Dormant Ability manifests as this ethereal siphon — it absorbs soul essence from kills. Critical for her survival, as her soul cannot generate essence on its own and constantly leaks it.", stat: "Essence Absorb: on kill | Soul Leak: compensated | Survival Req." },
+            { id: "j4", name: "Ascended War Mantle", slot: "cloak", ch: 1355, rarity: "mythic", image: 'assets/items/ascended_war_mantle.png', color: "#000080", desc: "After joining the cohort at Fallen Grace, Jet's Ascended-rank aura manifests as a dark mantle of chilling mist. Nightmare creatures instinctively flee from the Soul Reaper's presence.", stat: "Ascended Aura | Fear Field: 50m | Mist Domain | Soul Perception" },
+        ]
+    },
+
+    // ── WORLD MAP LOCATIONS ──────────────────────────────────────────────────
+    worldLocations: [
+        {
+            id: "nightmare-realm",
+            name: "The Nightmare Realm",
+            type: "realm",
+            x: 50, y: 28,
+            color: "#C41E3A",
+            icon: "🌑",
+            rank: "All Ranks",
+            desc: "A dark parallel world that overlaps with reality. Awakened enter it to fight and grow. The longer you survive, the stronger you become. The Nightmare Realm is the source of all nightmare creatures and the origin of Awakened power. Its geography shifts and warps, creating new zones of danger constantly.",
+            characters: ["sunny", "nephis", "cassie", "effie", "kai"],
+            chapters: "Ch. 1–1250",
+            connections: ["first-nightmare-gate", "nightmare-incursion-zone", "sovereign-domain"]
+        },
+        {
+            id: "first-nightmare-gate",
+            name: "First Nightmare Gate",
+            type: "dungeon",
+            x: 30, y: 18,
+            color: "#2DD4BF",
+            icon: "🚪",
+            rank: "Dormant → Awakened",
+            desc: "The gateway through which newly awakened humans enter the Nightmare Realm for the first time. A 30-day survival trial awaits — those who survive earn their first rank. It was here that Sunny, Nephis, Cassie, Effie, and Kai first met and formed their uneasy alliance.",
+            characters: ["sunny", "nephis", "cassie", "effie", "kai"],
+            chapters: "Ch. 1–50",
+            connections: ["nightmare-realm"]
+        },
+        {
+            id: "tomb-of-ariel",
+            name: "Tomb of Ariel",
+            type: "dungeon",
+            x: 72, y: 42,
+            color: "#A855F7",
+            icon: "⚰️",
+            rank: "Transcendent Legacy",
+            desc: "A legendary nightmare dungeon containing the soul legacy of Ariel — a Transcendent-rank being who chose to seal herself rather than Ascend. Three factions raced to claim its treasures. Nephis's flame turned cold-white here, and Sunny's echo army grew to 25. The Tomb closed permanently after the group escaped.",
+            characters: ["sunny", "nephis", "cassie", "effie", "kai", "morgans"],
+            chapters: "Ch. 200–400",
+            connections: ["nightmare-realm", "memory-clan-stronghold"]
+        },
+        {
+            id: "saint-gate",
+            name: "Saint Gate",
+            type: "zone",
+            x: 55, y: 62,
+            color: "#C41E3A",
+            icon: "⚔️",
+            rank: "Saint",
+            desc: "The threshold zone where Awakened attempt to break through to Saint rank — a grueling process requiring sustained combat against Transcendent-level nightmare creatures. Sunny confronted Morgan here, revealing a portion of his shadow army. It is also where Sunny ultimately achieved Saint rank.",
+            characters: ["sunny", "morgans"],
+            chapters: "Ch. 1050, 1110–1150",
+            connections: ["nightmare-realm", "blood-faction-sanctum"]
+        },
+        {
+            id: "memory-clan-stronghold",
+            name: "Memory Clan Stronghold",
+            type: "city",
+            x: 22, y: 45,
+            color: "#FFD700",
+            icon: "🏛️",
+            rank: "Clan Territory",
+            desc: "The ancestral seat of the Memory Clan — one of the most powerful Great Clans. Nephis's heritage flows from these halls. The clan elders here attempted to control Nephis's next moves after her flame aspect's abnormal growth. The Moonless Seal's origins trace back to a compact made here centuries ago.",
+            characters: ["nephis"],
+            chapters: "Ch. 85, 500, 700",
+            connections: ["tomb-of-ariel", "arrow-clan-territory"]
+        },
+        {
+            id: "arrow-clan-territory",
+            name: "Arrow Clan Territory",
+            type: "city",
+            x: 15, y: 70,
+            color: "#4169E1",
+            icon: "🏹",
+            rank: "Clan Territory",
+            desc: "The domain of the Arrow Clan, known for their precision and intelligence networks. Kai was trained here, and here the clan's true agenda regarding the Moonless Seal was formed. The territory is sparse and fortified — built for observation rather than luxury.",
+            characters: ["kai"],
+            chapters: "Ch. 110, 165, 350, 680",
+            connections: ["memory-clan-stronghold", "blood-faction-sanctum"]
+        },
+        {
+            id: "blood-faction-sanctum",
+            name: "Blood Faction Sanctum",
+            type: "dungeon",
+            x: 80, y: 72,
+            color: "#8B0000",
+            icon: "🩸",
+            rank: "Master+",
+            desc: "A hidden, ritualistic stronghold of the Blood Faction — not a clan but an extremist ideology using nightmare-derived blood rituals to enhance power beyond normal limits. Morgan operates from deep within. The sanctum is stained with permanent blood-seals and reeks of iron.",
+            characters: ["morgans"],
+            chapters: "Ch. 120, 190, 280, 1050",
+            connections: ["saint-gate", "arrow-clan-territory"]
+        },
+        {
+            id: "nightmare-incursion-zone",
+            name: "Nightmare Incursion Zone",
+            type: "zone",
+            x: 40, y: 80,
+            color: "#F59E0B",
+            icon: "⚠️",
+            rank: "All Ranks (Emergency)",
+            desc: "Zones where the Nightmare Realm has merged with the real world. Not a permanent dungeon — these are active disaster areas that shift and expand. After chapter 490, nightmare incursions became global, forcing Awakened society onto an emergency footing. Cities are at risk.",
+            characters: ["sunny", "nephis", "effie"],
+            chapters: "Ch. 490+",
+            connections: ["nightmare-realm", "last-nightmare-threshold"]
+        },
+        {
+            id: "sovereign-domain",
+            name: "The Sovereign's Domain",
+            type: "realm",
+            x: 65, y: 15,
+            color: "#6366F1",
+            icon: "👁️",
+            rank: "Unknown (Above Saint)",
+            desc: "A mysterious, hidden zone controlled by the Sovereign — a figure who operates above the Great Clans, deliberately engineering nightmare zone fluctuations. The domain's location is unknown; its influence is felt everywhere. A shadow sigil found here matches a pre-clan symbol potentially connected to Sunny's origin.",
+            characters: ["sunny"],
+            chapters: "Ch. 780, 1000, 1248",
+            connections: ["nightmare-realm", "last-nightmare-threshold"]
+        },
+        {
+            id: "last-nightmare-threshold",
+            name: "The Last Nightmare Threshold",
+            type: "realm",
+            x: 50, y: 92,
+            color: "#DC143C",
+            icon: "💀",
+            rank: "Transcendent+",
+            desc: "The theoretical point where the Nightmare Realm and the real world fully merge — the 'Last Nightmare.' The Sovereign is implied to be working toward triggering this event. If it occurs, all boundaries between worlds collapse. Sunny heads into the future knowing this arc is approaching.",
+            characters: ["sunny", "nephis"],
+            chapters: "Ch. 1220, 1250",
+            connections: ["nightmare-incursion-zone", "sovereign-domain"]
+        },
+
+        // ── PHASE 2: Ch. 1250–1800 Locations ────────────────────────────────
+        {
+            id: "nightmare-desert",
+            name: "Nightmare Desert",
+            type: "zone",
+            x: 35, y: 35,
+            color: "#D4A574",
+            icon: "🏜️",
+            rank: "Saint+",
+            desc: "A vast expanse of white sands east of the Forgotten Shore, stretching along the Hollow Mountains. At night, two cursed armies clash in an eternal battle across its dunes. It was here, on the shell of a giant black turtle drifting through this desert, that Sunny and Nephis reunited after their separation — spending a month training, sparring, and uncovering deep mythological truths about the Seven Suns and the Tomb of Ariel.",
+            characters: ["sunny", "nephis"],
+            chapters: "Ch. 1251–1260",
+            connections: ["nightmare-realm", "tomb-of-ariel"]
+        },
+        {
+            id: "fallen-grace",
+            name: "Fallen Grace",
+            type: "city",
+            x: 28, y: 58,
+            color: "#E8B4B4",
+            icon: "🏚️",
+            rank: "Great River City",
+            desc: "A city-ship flotilla on the Great River — one of the last human strongholds in the Tomb of Ariel. Buildings of white stone and pale wood with crimson accents, connected by rope bridges over wide canals. Scarlet fabric sails stretch between its taller structures. Once grand, it is now a wilting flower — faded sails, desolate streets, and abandoned buildings. The cohort regrouped here: Sunny, Nephis, Cassie, Jet, and Effie. Ruled by three sybils, with Dusk as the last.",
+            characters: ["sunny", "nephis", "cassie", "effie"],
+            chapters: "Ch. 1286–1389",
+            connections: ["wind-flower-island", "nightmare-desert"]
+        },
+        {
+            id: "wind-flower-island",
+            name: "Wind Flower Island",
+            type: "dungeon",
+            x: 12, y: 38,
+            color: "#22D3EE",
+            icon: "🌸",
+            rank: "Time-Locked Zone",
+            desc: "A mysterious island on the Great River where time loops endlessly. Sunny experienced over sixty repetitions of the same day, using each loop to sharpen his Shadow Step and gather intelligence. Cassie gradually became aware of the loops. The island was originally known as Aletheia's Island, created by a Seeker. A Saint named Wind Flower is trapped here in eternal slumber due to a seed of corruption. The cohort broke free from the time loop and departed in Ch. 1480.",
+            characters: ["sunny", "nephis", "cassie"],
+            chapters: "Ch. 1398–1480",
+            connections: ["fallen-grace", "great-river"]
+        },
+        {
+            id: "great-river",
+            name: "The Great River",
+            type: "realm",
+            x: 38, y: 50,
+            color: "#0EA5E9",
+            icon: "🌊",
+            rank: "Outside of Time",
+            desc: "An infinite river that flows from the future into the past, existing outside of time itself. Found within the Black Pyramid, connected to the blood of an Unholy Titan. It carries the cohort aboard the Chain Breaker toward the Estuary, where a dreadful secret was hidden by Ariel. Its waters are treacherous — massive vortexes and temporal anomalies make navigation near-impossible. The Great River is central to understanding the Forgotten God and the true nature of the Seven Suns.",
+            characters: ["sunny", "nephis", "cassie", "effie"],
+            chapters: "Ch. 1480–1590",
+            connections: ["wind-flower-island", "verge", "estuary"]
+        },
+        {
+            id: "verge",
+            name: "Verge",
+            type: "city",
+            x: 58, y: 48,
+            color: "#94A3B8",
+            icon: "🗼",
+            rank: "Ancient Seeker City",
+            desc: "An ancient city built by Seekers near the beginning of time, intended as a staging ground to reach the Estuary. Verge sits at the edge of comprehension — a place where the rules of reality begin to unravel. The architecture is alien and impossibly old, predating the Great Clans by millennia. From here, Sunny ventured into the heart of the Estuary to confront the truth about the Forgotten God.",
+            characters: ["sunny", "nephis", "cassie"],
+            chapters: "Ch. 1530–1570",
+            connections: ["great-river", "estuary"]
+        },
+        {
+            id: "estuary",
+            name: "The Estuary",
+            type: "dungeon",
+            x: 75, y: 55,
+            color: "#7C3AED",
+            icon: "🕳️",
+            rank: "Origin Point",
+            desc: "The mouth of the Great River — where the secret of the gods was buried by Ariel. Here it is revealed that there were not six but SEVEN gods: Sun God, War God, Storm God, Beast God, Heart God, Shadow God, and the Forgotten God. The other six imprisoned the Seventh to contain the Void, making him their collective Flaw. The daemons were born from his fractured soul. This revelation shattered Sunny's understanding of the world's true cosmology.",
+            characters: ["sunny", "cassie"],
+            chapters: "Ch. 1570–1579",
+            connections: ["verge", "great-river"]
+        },
+        {
+            id: "bastion",
+            name: "Bastion",
+            type: "city",
+            x: 88, y: 40,
+            color: "#A3E635",
+            icon: "☕",
+            rank: "Human World",
+            desc: "After transcending the Nightmare Spell around Ch. 1600, Sunny exists outside of it — forgotten by everyone, including Nephis, Cassie, and Effie. His citizenship is revoked, his records erased. The world adjusted to his absence as if he never existed. Despite this profound isolation, Sunny continues to operate from Bastion, where he opens a café. He brushes shoulders with former cohort members who no longer remember him. Effie's son, Little Ling, lives nearby — a child born as a Saint with Transcendent-level power.",
+            characters: ["sunny", "effie"],
+            chapters: "Ch. 1600–1800",
+            connections: ["nightmare-incursion-zone"]
+        }
+    ]
 };
 
-if (typeof module !== 'undefined') module.exports = RIFT_DATA;
+if (typeof module !== "undefined") module.exports = RIFT_DATA;
