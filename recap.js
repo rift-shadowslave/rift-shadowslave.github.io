@@ -292,9 +292,7 @@ async function renderRecap(data, from, to, toggles, spoilerLevel, useTypingEffec
     if (toggles.romance && data.romance && data.romance.length > 0) {
         tags.push(`<span class="rtag lore" style="background:rgba(236,72,153,0.08);color:#f472b6;border-color:rgba(236,72,153,0.2)">💜 ${data.romance.length} Relationship Moment${data.romance.length > 1 ? 's' : ''}</span>`);
     }
-    if (data.source === 'ai') {
-        tags.push(`<span class="rtag" style="background:rgba(59,130,246,0.08);color:#60a5fa;border-color:rgba(59,130,246,0.2);font-size:0.65rem">🤖 Gemini AI</span>`);
-    }
+    // Removed Gemini AI tag as requested
     document.getElementById('ro-tags-row').innerHTML = tags.join('') ||
         '<span style="font-size:0.75rem;color:var(--text-dim)">No filters enabled</span>';
 
