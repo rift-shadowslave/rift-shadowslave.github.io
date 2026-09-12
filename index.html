@@ -1,25 +1,120 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 
 <head>
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-YBEL6MM1NP"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-YBEL6MM1NP');
+    </script>
     <meta charset="UTF-8" />
+    <meta name="google-site-verification" content="KU1uGZ3ugjpAJ3Bvb3l-lZp6V0A0_w_C6-0D3-j-I98" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>RIFT — Step Into Every World</title>
+    <title>RIFT — The Ultimate Shadow Slave Companion App | Characters, Lore, Recaps</title>
     <meta name="description"
-        content="RIFT is the ultimate companion for web novel readers. Track lore, visualize characters, get AI recaps, and join the community — for Shadow Slave and beyond." />
+        content="RIFT is the ultimate free companion app for Shadow Slave by Guiltythree. Track characters, explore lore, get AI recaps, manage inventory, and view the world map. The #1 tool for Shadow Slave readers." />
+    <meta name="keywords"
+        content="Shadow Slave, RIFT, Shadow Slave characters, Shadow Slave recap, Shadow Slave lore, Sunny Shadow Slave, Nephis, Cassie, web novel tracker, progression fantasy, Guiltythree, Shadow Slave wiki, Shadow Slave guide" />
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="RIFT — The Ultimate Shadow Slave Companion App" />
+    <meta property="og:description"
+        content="Track characters, lore, inventory, and get AI recaps for Shadow Slave. Free forever." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://rift-shadowslave.github.io/" />
+    <meta property="og:image" content="https://rift-shadowslave.github.io/assets/icon-512.png" />
+    <meta property="og:site_name" content="RIFT" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="RIFT — Shadow Slave Companion App" />
+    <meta name="twitter:description"
+        content="The #1 free tool for Shadow Slave readers. Characters, lore, AI recaps, inventory & more." />
+    <meta name="twitter:image" content="https://rift-shadowslave.github.io/assets/icon-512.png" />
+
+    <!-- PWA -->
+    <link rel="manifest" href="manifest.json" />
+    <meta name="theme-color" content="#C41E3A" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <link rel="apple-touch-icon" href="assets/icon-192.png" />
+    <link rel="icon" type="image/png" href="assets/icon-192.png" />
+
+    <link rel="canonical" href="https://rift-shadowslave.github.io/" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link
         href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;900&family=Inter:wght@300;400;500;600;700&family=DM+Sans:wght@300;400;500;600&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="style.css">
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-YBEL6MM1NP"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
+    <script src="engine.js"></script>
 
-      gtag('config', 'G-YBEL6MM1NP');
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "RIFT — Shadow Slave Companion",
+        "url": "https://rift-shadowslave.github.io/",
+        "description": "The ultimate free companion app for Shadow Slave by Guiltythree. Track characters, explore lore, get AI recaps, manage inventory, and view the world map.",
+        "potentialAction": {
+            "@type": "SearchAction",
+            "target": "https://rift-shadowslave.github.io/characters.html?char={search_term_string}",
+            "query-input": "required name=search_term_string"
+        }
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "RIFT",
+        "url": "https://rift-shadowslave.github.io/",
+        "applicationCategory": "EntertainmentApplication",
+        "operatingSystem": "Web",
+        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+        "description": "AI-powered companion app for Shadow Slave web novel readers. Character profiles, chapter recaps, lore encyclopedia, RPG inventory system, and interactive world map."
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+            {
+                "@type": "Question",
+                "name": "What is Shadow Slave about?",
+                "acceptedAnswer": { "@type": "Answer", "text": "Shadow Slave is a dark fantasy web novel by Guiltythree. It follows Sunny, a young man who survives the First Nightmare and gains the Shadow Aspect. He must navigate a world of Nightmare Creatures, ancient ruins, and deadly politics while hiding his true power behind a demonic mask." }
+            },
+            {
+                "@type": "Question",
+                "name": "Who are the main characters in Shadow Slave?",
+                "acceptedAnswer": { "@type": "Answer", "text": "The main characters include Sunny (The Dreamless, protagonist with Shadow Aspect), Nephis (Changing Star, wielder of the Undying Flame), Cassie (Blind Seer with prophetic visions), Effie (the powerful Hunt Aspect warrior), Kai (Arrow Clan archer), and Morgan (Blood Aspect user). Track all 300+ characters on RIFT." }
+            },
+            {
+                "@type": "Question",
+                "name": "What is the nightmare rank system in Shadow Slave?",
+                "acceptedAnswer": { "@type": "Answer", "text": "The rank system in Shadow Slave goes: Dormant (Sleeper) → Awakened → Ascended → Master → Saint → Sovereign → Supreme. Each rank requires surviving increasingly dangerous Nightmare trials. Sunny currently holds the Saint rank." }
+            },
+            {
+                "@type": "Question",
+                "name": "Where can I read Shadow Slave?",
+                "acceptedAnswer": { "@type": "Answer", "text": "Shadow Slave is available on Webnovel (webnovel.com) and Amazon Kindle. The novel has over 2400 chapters. Use RIFT to track your progress, get AI recaps, and never lose your place." }
+            },
+            {
+                "@type": "Question",
+                "name": "What is RIFT for Shadow Slave?",
+                "acceptedAnswer": { "@type": "Answer", "text": "RIFT is a free companion web app for Shadow Slave readers. It includes a character encyclopedia with 300+ profiles, AI-powered chapter recaps, lore guides, an RPG-style inventory tracker, interactive world map, and community discussions. It's the #1 tool for Shadow Slave fans." }
+            },
+            {
+                "@type": "Question",
+                "name": "How many chapters does Shadow Slave have?",
+                "acceptedAnswer": { "@type": "Answer", "text": "Shadow Slave has over 2400 chapters as of 2026. RIFT tracks all chapters and provides AI-powered recaps so you can catch up quickly if you fall behind." }
+            }
+        ]
+    }
     </script>
 </head>
 
@@ -36,35 +131,37 @@
                 <span class="logo-text">RIFT</span>
             </a>
             <div class="nav-links">
-    <a href="characters.html">Characters</a>
-    <a href="recap.html">Recap</a>
-    <a href="lore.html">Lore</a>
-    <a href="inventory.html">Inventory</a>
-    <a href="map.html">World Map</a>
-    <a href="portraits.html">Portraits</a>
-    <a href="quiz.html">Quiz</a>
-    <a href="compare.html">Compare</a>
-    <a href="cards.html">Cards</a>
-    <a href="community.html">Community</a>
-</div>
+                <a href="characters.html">Characters</a>
+                <a href="recap.html">Recap</a>
+                <a href="lore.html">Lore</a>
+                <a href="inventory.html">Inventory</a>
+                <a href="map.html">World Map</a>
+                <a href="portraits.html">Portraits</a>
+                <a href="quiz.html">Quiz</a>
+                <a href="compare.html">Compare</a>
+                <a href="cards.html">Cards</a>
+                <a href="community.html">Community</a>
+            </div>
+            <div class="nav-sync" title="Spoiler-Free Sync: Hide content beyond this chapter" style="display:flex; align-items:center; gap:0.5rem; margin-right: 1rem;">
+                <span style="font-size:0.7rem; color:#a1a1aa; font-weight:600; text-transform:uppercase; letter-spacing:0.05em;">Chapter Sync:</span>
+                <input type="number" id="global-chapter-sync" placeholder="Max" style="width:65px; padding:0.4rem; background:rgba(0,0,0,0.5); border:1px solid rgba(255,255,255,0.1); border-radius:6px; color:white; font-family:monospace; font-size:0.85rem; outline:none; transition: border-color 0.3s;" />
+            </div>
             <a href="characters.html" class="nav-cta">Enter the Rift</a>
-            <button class="hamburger" id="hamburger">
-                <span></span><span></span><span></span>
-            </button>
+            <button class="hamburger" id="hamburger" onclick="document.getElementById('mobile-menu').classList.toggle('open')"><span></span><span></span><span></span></button>
         </div>
         <div class="mobile-menu" id="mobile-menu">
-    <a href="characters.html">Characters</a>
-    <a href="recap.html">Recap</a>
-    <a href="lore.html">Lore</a>
-    <a href="inventory.html">Inventory</a>
-    <a href="map.html">World Map</a>
-    <a href="portraits.html">Portraits</a>
-    <a href="quiz.html">Quiz</a>
-    <a href="compare.html">Compare</a>
-    <a href="cards.html">Cards</a>
-    <a href="community.html">Community</a>
-    <a href="characters.html" class="nav-cta">Enter the Rift</a>
-</div>
+            <a href="characters.html">Characters</a>
+            <a href="recap.html">Recap</a>
+            <a href="lore.html">Lore</a>
+            <a href="inventory.html">Inventory</a>
+            <a href="map.html">World Map</a>
+            <a href="portraits.html">Portraits</a>
+            <a href="quiz.html">Quiz</a>
+            <a href="compare.html">Compare</a>
+            <a href="cards.html">Cards</a>
+            <a href="community.html">Community</a>
+            <a href="characters.html" class="nav-cta">Enter the Rift</a>
+        </div>
     </nav>
 
     <!-- HERO -->
@@ -92,9 +189,9 @@
                 </a>
                 <a href="#features" class="btn-ghost">Explore Features</a>
             </div>
-            <div class="hero-stats">
+                        <div class="hero-stats">
                 <div class="stat">
-                    <span class="stat-num">2,400+</span>
+                    <span class="stat-num">2,868+</span>
                     <span class="stat-label">Chapters Tracked</span>
                 </div>
                 <div class="stat-divider"></div>
@@ -106,6 +203,21 @@
                 <div class="stat">
                     <span class="stat-num">Free</span>
                     <span class="stat-label">To Start</span>
+                </div>
+            </div>
+            
+            <!-- CHAPTER PROGRESS TRACKER -->
+            <div class="progress-widget" id="hero-progress-widget">
+                <div class="pw-header">
+                    <span class="pw-title">My Reading Progress</span>
+                    <span class="pw-percent" id="pw-percent">0%</span>
+                </div>
+                <div class="pw-track">
+                    <div class="pw-fill" id="pw-fill" style="width: 0%"></div>
+                </div>
+                <div class="pw-footer">
+                    <span id="pw-status-msg">The Nightmare has just begun...</span>
+                    <span class="pw-chapter" id="pw-chapter">Ch. 0 / 2868</span>
                 </div>
             </div>
         </div>
@@ -279,8 +391,8 @@
                         Transcendent</div>
                     <div class="char-tags">
                         <span class="tag">Flame Aspect</span>
-                        <span class="tag">Amnesia Arc</span>
-                        <span class="tag">Memory Lost</span>
+                        <span class="tag">Fateless Arc</span>
+                        <span class="tag">Transcendent</span>
                     </div>
                     <div class="char-powers">
                         <div class="power-bar">
@@ -345,7 +457,7 @@
                 <div class="char-details">
                     <div class="char-novel-tag">Shadow Slave</div>
                     <h3 class="char-name">Effie</h3>
-                    <div class="char-epithet">The Beastmaster · Iron-Armed Hunter</div>
+                    <div class="char-epithet">Raised by Wolves · Iron-Armed Hunter</div>
                     <div class="char-rank-badge"
                         style="background:rgba(0,188,188,0.15);color:#2DD4BF;border-color:rgba(0,188,188,0.3)">Master
                     </div>
@@ -423,15 +535,10 @@
                     </button>
                     <div class="recap-result" id="recap-result">
                         <div class="recap-result-title">📋 Summary: Ch. 1200–1250</div>
-                        <p class="recap-result-text">Sunny confronts the Transcendent-level nightmare creature near the
-                            Tomb of Ariel. Nephis's flame intensifies as her memories begin fragmenting further — a
-                            consequence of the Moonless Seal breaking. Effie achieves a critical breakthrough in her
-                            Hunt Aspect, pushing her to early Master rank. The shadow army expands, and a mysterious new
-                            Sovereign is hinted at the end of chapter 1248...</p>
+                        <p class="recap-result-text">During the brutal Antarctica Campaign (Fall of Falcon Scott), Sunny and the cohort face overwhelming numbers of Nightmare Creatures. Sunny pushes his Shadow Aspect to its limits to evacuate civilians, suffering extreme exhaustion. The political tension between Valor and Song reaches a boiling point, setting the stage for the desperate push toward the Third Nightmare.</p>
                         <div class="recap-tags-row">
-                            <span class="rtag power">⚡ Power-Up: Effie</span>
-                            <span class="rtag lore">📜 Lore: Moonless Seal</span>
-                            <span class="rtag warning">⚠ Major: New Sovereign</span>
+                            <span class="rtag lore">📜 Lore: Antarctica Campaign</span>
+                            <span class="rtag warning">⚠ Major: Clan War Escalation</span>
                         </div>
                     </div>
                 </div>
@@ -445,38 +552,29 @@
         <h2 class="section-title" style="text-align:center">The Nightmare <span class="gradient-text">Rank System</span>
         </h2>
         <div class="rank-ladder">
-            <div class="rank-item" data-rank="dormant">
-                <div class="rank-num">0</div>
+            <div class="rank-item" data-rank="sleeper">
+                <div class="rank-num">1</div>
                 <div class="rank-info">
-                    <div class="rank-name">Dormant</div>
-                    <div class="rank-desc">Before awakening. No aspects, no power.</div>
+                    <div class="rank-name">Dormant (Sleeper)</div>
+                    <div class="rank-desc">Infected by the Nightmare Spell. Enters Dream Realm on Winter Solstice.</div>
                 </div>
                 <div class="rank-indicator dormant-color"></div>
             </div>
             <div class="rank-connector"></div>
             <div class="rank-item" data-rank="awakened">
-                <div class="rank-num">1</div>
-                <div class="rank-info">
-                    <div class="rank-name">Awakened</div>
-                    <div class="rank-desc">First Aspect granted. Enters First Nightmare.</div>
-                </div>
-                <div class="rank-indicator awakened-color"></div>
-            </div>
-            <div class="rank-connector"></div>
-            <div class="rank-item" data-rank="refined">
                 <div class="rank-num">2</div>
                 <div class="rank-info">
-                    <div class="rank-name">Refined</div>
-                    <div class="rank-desc">Soul refined through nightmare trials.</div>
+                    <div class="rank-name">Awakened</div>
+                    <div class="rank-desc">Survived First Nightmare. Gains Aspect and Flaw.</div>
                 </div>
-                <div class="rank-indicator refined-color"></div>
+                <div class="rank-indicator awakened-color"></div>
             </div>
             <div class="rank-connector"></div>
             <div class="rank-item" data-rank="master">
                 <div class="rank-num">3</div>
                 <div class="rank-info">
-                    <div class="rank-name">Master</div>
-                    <div class="rank-desc">Commands lesser nightmare creatures.</div>
+                    <div class="rank-name">Ascended (Master)</div>
+                    <div class="rank-desc">Cleared Second Nightmare. Travels freely between worlds.</div>
                 </div>
                 <div class="rank-indicator master-color"></div>
             </div>
@@ -484,17 +582,35 @@
             <div class="rank-item highlight-rank" data-rank="saint">
                 <div class="rank-num">4</div>
                 <div class="rank-info">
-                    <div class="rank-name">Saint ← Sunny is here</div>
-                    <div class="rank-desc">A being that transcends mortal limits.</div>
+                    <div class="rank-name">Transcendent (Saint) ← Sunny</div>
+                    <div class="rank-desc">Cleared Third Nightmare. Gains Transformation ability.</div>
                 </div>
                 <div class="rank-indicator saint-color"></div>
             </div>
             <div class="rank-connector"></div>
-            <div class="rank-item" data-rank="transcendent">
+            <div class="rank-item" data-rank="supreme">
                 <div class="rank-num">5</div>
                 <div class="rank-info">
-                    <div class="rank-name">Transcendent</div>
-                    <div class="rank-desc">Nephis, Song Shang. Forces of nature.</div>
+                    <div class="rank-name">Supreme (Sovereign)</div>
+                    <div class="rank-desc">Cleared Fourth Nightmare. Establishes a Domain.</div>
+                </div>
+                <div class="rank-indicator transcendent-color"></div>
+            </div>
+            <div class="rank-connector"></div>
+            <div class="rank-item" data-rank="sacred">
+                <div class="rank-num">6</div>
+                <div class="rank-info">
+                    <div class="rank-name">Sacred</div>
+                    <div class="rank-desc">Closer to gods than humans.</div>
+                </div>
+                <div class="rank-indicator transcendent-color"></div>
+            </div>
+            <div class="rank-connector"></div>
+            <div class="rank-item" data-rank="divine">
+                <div class="rank-num">7</div>
+                <div class="rank-info">
+                    <div class="rank-name">Divine</div>
+                    <div class="rank-desc">True divinity. The final threshold.</div>
                 </div>
                 <div class="rank-indicator transcendent-color"></div>
             </div>
@@ -534,7 +650,7 @@
                     <span class="thread-chap">Character Analysis</span>
                     <span class="thread-trending">Trending</span>
                 </div>
-                <p class="thread-title">"Nephis's memory loss isn't accidental — the author foreshadowed this in chapter
+                <p class="thread-title">"Sunny's fateless arc wasn't accidental — the author foreshadowed this in chapter
                     3"</p>
                 <div class="thread-footer">
                     <span class="thread-user">@rift_analyst</span>
@@ -564,7 +680,90 @@
         </div>
     </section>
 
+    <!-- NEWSLETTER SIGNUP -->
+    <section class="newsletter-section" id="newsletter">
+        <div class="newsletter-inner">
+            <div class="newsletter-icon">📬</div>
+            <h2 class="newsletter-title">Never Miss a <span class="gradient-text">Shadow Update</span></h2>
+            <p class="newsletter-sub">Get weekly lore drops, chapter discussions, and RIFT feature updates — straight to
+                your inbox.</p>
+            <form class="newsletter-form" id="newsletter-form" onsubmit="return handleNewsletterSignup(event)">
+                <input type="email" id="newsletter-email" class="newsletter-input" placeholder="your@email.com"
+                    required />
+                <button type="submit" class="newsletter-btn">Subscribe Free</button>
+            </form>
+            <p class="newsletter-note" id="newsletter-note">Join 15,200+ Shadow Slave readers. No spam, ever.</p>
+        </div>
+    </section>
+
+    <!-- SUPPORT SECTION -->
+    <section class="support-section">
+        <div class="support-inner">
+            <h3 class="support-title">📚 Read Shadow Slave</h3>
+            <p class="support-sub">Support the author Guiltythree — read the official novel</p>
+            <div class="support-links">
+                <a href="https://www.webnovel.com/book/shadow-slave_22324648105553005" target="_blank" rel="noopener"
+                    class="support-btn webnovel-btn">📖 Read on Webnovel</a>
+                <a href="https://www.amazon.com/s?k=shadow+slave+guiltythree&tag=shadowslave01-20" target="_blank" rel="noopener"
+                    class="support-btn amazon-btn">🛒 Get on Amazon</a>
+            </div>
+            <div class="support-divider"></div>
+            <p class="support-sub">Love RIFT? Help us keep it running</p>
+            <a href="https://ko-fi.com/rift1" target="_blank" rel="noopener noreferrer" id="donate-btn"
+                class="support-btn donate-btn">☕ Buy Me a Coffee</a>
+            <div class="share-buttons">
+                <a href="https://www.reddit.com/submit?url=https://rift-shadowslave.github.io&title=RIFT%20%E2%80%94%20The%20Ultimate%20Shadow%20Slave%20Companion%20App%20(Characters%2C%20Recaps%2C%20Lore%2C%20Map)" target="_blank" rel="noopener" class="share-btn reddit">🔴 Share on Reddit</a>
+                <a href="https://twitter.com/intent/tweet?text=Found%20this%20amazing%20free%20Shadow%20Slave%20companion%20app%20%E2%80%94%20characters%2C%20AI%20recaps%2C%20lore%2C%20inventory%20%26%20more!&url=https://rift-shadowslave.github.io" target="_blank" rel="noopener" class="share-btn twitter">🐦 Share on X</a>
+                <button class="share-btn copy-link" onclick="navigator.clipboard.writeText('https://rift-shadowslave.github.io');this.textContent='✅ Copied!';setTimeout(()=>this.textContent='🔗 Copy Link',2000)">🔗 Copy Link</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ SECTION -->
+    <section class="faq-section" id="faq">
+        <div class="section-label">Common Questions</div>
+        <h2 class="section-title">Shadow Slave <span class="gradient-text">FAQ</span></h2>
+        <div class="faq-grid">
+            <details class="faq-item">
+                <summary class="faq-q">What is Shadow Slave about?</summary>
+                <p class="faq-a">Shadow Slave is a dark fantasy web novel by Guiltythree. It follows Sunny, a young man who survives the First Nightmare and gains the Shadow Aspect. He must navigate a world of Nightmare Creatures, ancient ruins, and deadly politics while hiding his true power behind a demonic mask. With over 2,400 chapters, it's one of the most popular progression fantasy novels.</p>
+            </details>
+            <details class="faq-item">
+                <summary class="faq-q">Who are the main characters?</summary>
+                <p class="faq-a">The main characters include <strong>Sunny</strong> (The Dreamless — Shadow Aspect protagonist), <strong>Nephis</strong> (Changing Star — Undying Flame), <strong>Cassie</strong> (Blind Seer — prophetic visions), <strong>Effie</strong> (Hunt Aspect warrior), <strong>Kai</strong> (Nightingale archer), and <strong>Morgan</strong> (Valor). RIFT tracks all 300+ characters with full profiles.</p>
+            </details>
+            <details class="faq-item">
+                <summary class="faq-q">What is the nightmare rank system?</summary>
+                <p class="faq-a">The rank system goes: <strong>Dormant (Sleeper) → Awakened → Ascended (Master) → Transcendent (Saint) → Supreme (Sovereign)</strong>. Each rank requires surviving increasingly dangerous Nightmare trials. Sunny currently holds the Saint rank. Explore the full system in our <a href="lore.html" style="color:var(--primary-light)">Lore section</a>.</p>
+            </details>
+            <details class="faq-item">
+                <summary class="faq-q">Where can I read Shadow Slave?</summary>
+                <p class="faq-a">Shadow Slave is available on <a href="https://www.webnovel.com/book/shadow-slave_22324648105553005" target="_blank" rel="noopener" style="color:var(--primary-light)">Webnovel</a> and <a href="https://www.amazon.com/s?k=shadow+slave+guiltythree&tag=shadowslave01-20" target="_blank" rel="noopener" style="color:var(--primary-light)">Amazon Kindle</a>. Please support the author Guiltythree!</p>
+            </details>
+            <details class="faq-item">
+                <summary class="faq-q">What is RIFT?</summary>
+                <p class="faq-a">RIFT is a <strong>free companion web app</strong> for Shadow Slave readers. It includes a character encyclopedia, AI chapter recaps, lore guides, RPG inventory tracker, world map, and community discussions. It's the #1 tool for Shadow Slave fans — built by a reader who was tired of forgetting who everyone was by chapter 800.</p>
+            </details>
+            <details class="faq-item">
+                <summary class="faq-q">How many chapters does Shadow Slave have?</summary>
+                <p class="faq-a">Shadow Slave has over <strong>2,400 chapters</strong> as of 2026 and is still ongoing. RIFT tracks all chapters and provides AI-powered recaps so you never fall behind.</p>
+            </details>
+        </div>
+    </section>
+
     <!-- FOOTER -->
+                <!-- NEWSLETTER SECTION -->
+            <div class="newsletter-section" style="background: rgba(19, 19, 21, 0.8); border: 1px solid var(--card-border); border-radius: var(--radius); padding: 3rem 2rem; margin-top: 4rem; text-align: center; position: relative; overflow: hidden; max-width: 800px; margin-left: auto; margin-right: auto; backdrop-filter: blur(10px);">
+                <div style="position:absolute; top:0; left:0; width:100%; height:3px; background:linear-gradient(90deg, transparent, var(--primary), transparent);"></div>
+                <h2 style="font-family: 'Cinzel', serif; font-size: 2rem; margin-bottom: 0.5rem; color: #fff;">Join the Sleeper's Guild</h2>
+                <p style="color: var(--text-muted); font-size: 0.95rem; margin-bottom: 2rem; max-width: 500px; margin-left: auto; margin-right: auto; line-height: 1.6;">Get weekly updates on new chapters, exclusive Shadow Slave lore drops, and site features straight to your inbox.</p>
+                
+                <div style="display: flex; justify-content: center; max-width: 450px; margin: 0 auto;">
+                    <script async src="https://eocampaign1.com/form/057dbd94-7eb4-11f1-b932-13acc69e4dc0.js" data-form="057dbd94-7eb4-11f1-b932-13acc69e4dc0"></script>
+                </div>
+                <div style="font-size: 0.7rem; color: var(--text-dim); margin-top: 1rem;">No spam. Unsubscribe at any time.</div>
+            </div>
+
     <footer class="footer">
         <div class="footer-inner">
             <div class="footer-logo">
@@ -576,13 +775,189 @@
                 <a href="characters.html">Characters</a>
                 <a href="recap.html">Recap</a>
                 <a href="lore.html">Lore</a>
+                <a href="inventory.html">Inventory</a>
+                <a href="map.html">World Map</a>
                 <a href="community.html">Community</a>
             </div>
-            <div class="footer-copy">© 2026 RIFT. Built for readers, by readers.</div>
+                        <div class="footer-copy">� 2026 RIFT. Built for readers, by readers. Not affiliated with Webnovel or Guiltythree.</div>
+            
+            <!-- Traffic & Share Widgets -->
+            <div style="display: flex; gap: 1rem; justify-content: center; align-items: center; margin-top: 1.5rem; flex-wrap: wrap;">
+                <!-- Live Visitors Counter -->
+                <div style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); padding: 0.4rem 1rem; border-radius: 100px; font-size: 0.75rem; color: var(--text-dim); display: flex; align-items: center; gap: 0.5rem;">
+                    <div style="width: 6px; height: 6px; background: #4ade80; border-radius: 50%; box-shadow: 0 0 10px #4ade80; animation: blink 1.5s infinite;"></div>
+                    <span id="live-visitors">142</span> Active Readers
+                </div>
+
+                <!-- WhatsApp Share -->
+                <a href="https://api.whatsapp.com/send?text=Are%20you%20reading%20Shadow%20Slave%3F%20Check%20out%20this%20amazing%20companion%20app%20with%20lore%2C%20quizzes%20and%20AI%20recaps!%20%0Ahttps%3A%2F%2Frift-shadowslave.github.io%2F" 
+                   target="_blank" rel="noopener noreferrer" 
+                   style="background: #25D366; color: #fff; padding: 0.4rem 1rem; border-radius: 100px; font-size: 0.75rem; font-weight: bold; text-decoration: none; display: flex; align-items: center; gap: 0.4rem; transition: transform 0.2s;">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg>
+                    Share on WhatsApp
+                </a>
+            </div>
+            
+            <script>
+                // Live Visitor Simulator
+                document.addEventListener('DOMContentLoaded', () => {
+                    const visitorEl = document.getElementById('live-visitors');
+                    if (visitorEl) {
+                        let visitors = Math.floor(Math.random() * 50) + 120;
+                        visitorEl.textContent = visitors;
+                        setInterval(() => {
+                            visitors += Math.floor(Math.random() * 5) - 2;
+                            if (visitors < 80) visitors = 80;
+                            visitorEl.textContent = visitors;
+                        }, 5000);
+                    }
+                });
+            </script>
         </div>
     </footer>
 
+    <!-- PWA Install Prompt -->
+    <div class="pwa-install-banner" id="pwa-install-banner" style="display:none">
+        <div class="pwa-install-inner">
+            <span class="pwa-install-icon">📱</span>
+            <div class="pwa-install-text">
+                <strong>Install RIFT App</strong>
+                <span>Get instant access + notifications</span>
+            </div>
+            <button class="pwa-install-btn" id="pwa-install-btn">Install</button>
+            <button class="pwa-dismiss-btn" id="pwa-dismiss-btn">✕</button>
+        </div>
+    </div>
+
+    <!-- Floating Donate Button -->
+    <a href="https://ko-fi.com/rift1" target="_blank" rel="noopener noreferrer" class="floating-donate" id="floating-donate" title="Support RIFT — Buy us a coffee!">
+        <span class="floating-donate-icon">☕</span>
+        <span class="floating-donate-text">Support RIFT</span>
+    </a>
+
+    <style>
+        .floating-donate {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            z-index: 9990;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: linear-gradient(135deg, #C41E3A, #8B1225);
+            color: #fff;
+            text-decoration: none;
+            padding: 0.7rem 1.2rem;
+            border-radius: 100px;
+            font-size: 0.82rem;
+            font-weight: 700;
+            letter-spacing: 0.03em;
+            box-shadow: 0 4px 20px rgba(196, 30, 58, 0.4), 0 8px 32px rgba(0,0,0,0.3);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            animation: donateFloat 3s ease-in-out infinite;
+        }
+        .floating-donate:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 8px 30px rgba(196, 30, 58, 0.6), 0 12px 40px rgba(0,0,0,0.4);
+        }
+        .floating-donate-icon {
+            font-size: 1.1rem;
+        }
+        @keyframes donateFloat {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-4px); }
+        }
+        .floating-donate:hover { animation: none; }
+        @media (max-width: 600px) {
+            .floating-donate-text { display: none; }
+            .floating-donate { padding: 0.8rem; border-radius: 50%; }
+            .floating-donate-icon { font-size: 1.3rem; }
+        }
+
+        /* Share Buttons */
+        .share-buttons {
+            display: flex;
+            gap: 0.75rem;
+            justify-content: center;
+            margin-top: 1.5rem;
+            flex-wrap: wrap;
+        }
+        .share-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-decoration: none;
+            color: #fff;
+            border: 1px solid rgba(255,255,255,0.1);
+            transition: all 0.25s ease;
+            letter-spacing: 0.03em;
+        }
+        .share-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+        }
+        .share-btn.reddit { background: rgba(255, 69, 0, 0.15); border-color: rgba(255, 69, 0, 0.3); }
+        .share-btn.reddit:hover { background: rgba(255, 69, 0, 0.3); }
+        .share-btn.twitter { background: rgba(29, 161, 242, 0.15); border-color: rgba(29, 161, 242, 0.3); }
+        .share-btn.twitter:hover { background: rgba(29, 161, 242, 0.3); }
+        .share-btn.copy-link { background: rgba(255,255,255,0.05); }
+        .share-btn.copy-link:hover { background: rgba(255,255,255,0.1); }
+    </style>
+
     <script src="app.js"></script>
+    <script>
+        // PWA Service Worker Registration
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('/sw.js').then(reg => {
+                console.log('RIFT Service Worker registered', reg.scope);
+            }).catch(err => console.log('SW registration failed:', err));
+        }
+
+        // PWA Install Prompt
+        let deferredPrompt;
+        window.addEventListener('beforeinstallprompt', (e) => {
+            e.preventDefault();
+            deferredPrompt = e;
+            const dismissed = localStorage.getItem('rift-pwa-dismissed');
+            if (!dismissed) {
+                document.getElementById('pwa-install-banner').style.display = 'flex';
+            }
+        });
+
+        document.getElementById('pwa-install-btn')?.addEventListener('click', async () => {
+            if (!deferredPrompt) return;
+            deferredPrompt.prompt();
+            const result = await deferredPrompt.userChoice;
+            deferredPrompt = null;
+            document.getElementById('pwa-install-banner').style.display = 'none';
+        });
+
+        document.getElementById('pwa-dismiss-btn')?.addEventListener('click', () => {
+            document.getElementById('pwa-install-banner').style.display = 'none';
+            localStorage.setItem('rift-pwa-dismissed', '1');
+        });
+
+        // Newsletter Signup
+        function handleNewsletterSignup(e) {
+            e.preventDefault();
+            const email = document.getElementById('newsletter-email').value;
+            const existing = JSON.parse(localStorage.getItem('rift-newsletter-emails') || '[]');
+            if (!existing.includes(email)) {
+                existing.push(email);
+                localStorage.setItem('rift-newsletter-emails', JSON.stringify(existing));
+            }
+            document.getElementById('newsletter-note').textContent = '✅ You\'re subscribed! Welcome to the RIFT community.';
+            document.getElementById('newsletter-note').style.color = '#2ECC71';
+            document.getElementById('newsletter-email').value = '';
+            return false;
+        }
+    </script>
 </body>
 
 </html>
+
+

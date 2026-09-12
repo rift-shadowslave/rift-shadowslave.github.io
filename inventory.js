@@ -2,9 +2,13 @@
 
 // ── STATE ────────────────────────────────────────────────────────────────────
 let activeCharId = 'sunny';
-let userChapter = 50;
+let equippedState = {};
 let equippedItems = {};
 let activeSlotFilter = 'all';
+
+function getUserChapter() {
+    return window.RiftEngine ? window.RiftEngine.getChapter() : 2868;
+}
 
 // ── CHARACTER MASTER CONFIG ──────────────────────────────────────────────────
 // Novel-accurate descriptions used for SVG art generation
@@ -85,6 +89,19 @@ const CHAR_CONFIG = {
             hairStyle: 'sleek-dark', face: 'pale-unsettling', build: 'lean',
             aura: 'blood-mist', markings: 'blood-veins',
             baseOutfit: 'blood-faction-robe',
+        }
+    },
+    jet: {
+        color: '#4169E1', accent: '#1C3A5E',
+        rank: 'ASCENDED',
+        bg: 'radial-gradient(ellipse at 50% 80%, #06102a 0%, #01020a 60%)',
+        auraColor: 'rgba(65,105,225,0.4)',
+        // Novel description: Pale silver hair, pale skin, blue glowing eyes, chill mist aura
+        art: {
+            skinTone: '#E0E8E8', hairColor: '#C0C8D0', eyeColor: '#4169E1',
+            hairStyle: 'tied-dark', face: 'cold-sharp', build: 'tall-athletic',
+            aura: 'chill-mist', markings: 'none',
+            baseOutfit: 'military-officer',
         }
     }
 };
@@ -219,8 +236,22 @@ function buildHeadSVG(charId, art, cfg, accessItem) {
     // Face
     html += `<ellipse cx="140" cy="140" rx="${headW}" ry="${headH}" fill="url(#skin-g)"/>`;
 
-    if (showMask) {
-        // Mask of the Nameless - featureless dark mask
+    if (showMask && accessItem.id === 's13') {
+        html += `
+        <defs>
+            <radialGradient id="soft-mask-fade" cx="50%" cy="50%" r="50%">
+                <stop offset="65%" stop-color="white" stop-opacity="1"/>
+                <stop offset="100%" stop-color="white" stop-opacity="0"/>
+            </radialGradient>
+            <mask id="mask-soft">
+                <ellipse cx="140" cy="120" rx="60" ry="70" fill="url(#soft-mask-fade)" />
+            </mask>
+        </defs>
+        <!-- Use a larger image block so the horns and full face fit, blended nicely! -->
+        <image href="${accessItem.image}" x="80" y="50" width="120" height="140" preserveAspectRatio="xMidYMid slice" mask="url(#mask-soft)"/>
+        `;
+    } else if (showMask) {
+        // Fallback for any other masks
         html += `
         <ellipse cx="140" cy="140" rx="${headW + 2}" ry="${headH + 2}" fill="${accessItem.color}" opacity="0.92" filter="url(#glow)"/>
         <ellipse cx="140" cy="140" rx="${headW - 2}" ry="${headH - 2}" fill="none" stroke="${cfg.color}" stroke-width="1.5" opacity="0.5"/>
@@ -481,6 +512,17 @@ function buildWeaponSVG(item, cfg) {
 
 function art_skin(id) { return (CHAR_CONFIG[id]?.art?.skinTone || '#C8956C'); }
 
+// Global helper for item image onerror fallback
+function itemImgFallback(img, emoji, color) {
+    img.style.display = 'none';
+    const div = document.createElement('div');
+    div.className = 'item-card-emoji text-shadow-glow';
+    div.style.setProperty('--item-color', color || '#C41E3A');
+    div.textContent = emoji || '⚔';
+    img.parentNode.insertBefore(div, img.nextSibling);
+}
+
+
 function buildDefaultHand(side, art) {
     const x = side === 'right' ? 208 : 70;
     const pathD = side === 'right'
@@ -646,11 +688,19 @@ function shadeColor(hex, amount) { return lightenColor(hex, amount); }
 
 // ── INIT ─────────────────────────────────────────────────────────────────────
 document.addEventListener('DOMContentLoaded', () => {
-    const saved = localStorage.getItem('rift-progress-shadow-slave');
-    if (saved) {
-        userChapter = parseInt(saved) || 50;
-        document.getElementById('user-chapter-input').value = userChapter;
-    }
+    // Sync UI with global engine state
+    
+
+    // Listen to global chapter changes from navbar or anywhere else
+    window.addEventListener('rift-chapter-changed', (e) => {
+        
+        validateEquipped();
+        renderInventoryGrid();
+        updateUnlockInfo();
+        renderHoloSlots();
+        renderEquippedSlots();
+        buildCharSelect(); // Update item counts in the side panel
+    });
 
     buildCharSelect();
     switchCharacter('sunny');
@@ -695,18 +745,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    document.getElementById('apply-chapter-btn').addEventListener('click', () => {
-        const val = parseInt(document.getElementById('user-chapter-input').value);
-        if (val && val >= 1 && val <= 1300) {
-            userChapter = val;
-            localStorage.setItem('rift-progress-shadow-slave', val);
-            renderInventoryGrid();
-            updateUnlockInfo();
-            validateEquipped();
-            renderHoloSlots();
-            renderEquippedSlots();
-        }
-    });
+    
 
     document.getElementById('inv-filter-row').addEventListener('click', e => {
         const btn = e.target.closest('.slot-filter-btn');
@@ -732,7 +771,7 @@ function buildCharSelect() {
         const cfg = CHAR_CONFIG[char.id];
         if (!cfg) return;
         const items = RIFT_DATA.inventoryItems[char.id] || [];
-        const unlockedCount = items.filter(i => i.ch <= userChapter).length;
+        const unlockedCount = items.filter(i => i.ch <= getUserChapter()).length;
         const btn = document.createElement('button');
         btn.className = 'char-select-btn' + (char.id === activeCharId ? ' active' : '');
         btn.dataset.charid = char.id;
@@ -752,7 +791,8 @@ function buildCharSelect() {
 // ── SWITCH CHARACTER ──────────────────────────────────────────────────────────
 function switchCharacter(charId) {
     activeCharId = charId;
-    equippedItems = {};
+    if (!equippedState[charId]) equippedState[charId] = {};
+    equippedItems = equippedState[charId];
     document.querySelectorAll('.char-select-btn').forEach(b => {
         b.classList.toggle('active', b.dataset.charid === charId);
     });
@@ -792,9 +832,11 @@ function renderCharDisplay() {
         area.insertBefore(container, area.querySelector('.equipped-overlay'));
     }
 
+    const charImgSrc = activeCharId === 'morgans' ? 'assets/chars/morgan.png' : `assets/chars/${activeCharId}.png`;
+    
     container.innerHTML = `
         <div class="char-portrait-radial" style="background:${cfg.color}"></div>
-        <img src="assets/chars/${activeCharId}.png" class="char-portrait-img" alt="${activeCharId}" />
+        <img src="${charImgSrc}" class="char-portrait-img" alt="${activeCharId}" style="position:absolute; bottom:0; z-index:3;" />
         <div class="eq-halo">
             <div class="eq-halo-column left-halo" id="halo-left"></div>
             <div class="eq-halo-column right-halo" id="halo-right"></div>
@@ -831,7 +873,7 @@ function renderHoloSlots() {
             if (item) {
                 eqSlot.style.setProperty('--item-color', item.color || '#C41E3A');
                 eqSlot.innerHTML = `
-                    <div class="holo-slot-emoji">${item.emoji}</div>
+                    <div class="holo-slot-emoji">${item.image ? `<img src="${item.image}" style="width:100%;height:100%;object-fit:contain;filter:drop-shadow(0 0 5px ${item.color || '#C41E3A'});" onerror="itemImgFallback(this, '${item.emoji || '⚔'}', '${item.color || '#C41E3A'}')">` : item.emoji}</div>
                     <div class="holo-slot-label">${slot}</div>
                 `;
                 eqSlot.onclick = (e) => {
@@ -866,7 +908,8 @@ function renderEquippedSlots() {
         const pill = document.createElement('div');
         pill.className = 'eq-slot-pill has-item';
         pill.style.setProperty('--item-color', item.color || '#C41E3A');
-        pill.innerHTML = `${item.emoji} <span>${item.name}</span> <span class="eq-remove">✕</span>`;
+        const iconHtml = item.image ? `<img src="${item.image}" style="width:18px;height:18px;object-fit:contain;vertical-align:middle;margin-right:8px;">` : `<span style="margin-right:8px">${item.emoji}</span>`;
+        pill.innerHTML = `${iconHtml} <span>${item.name}</span> <span class="eq-remove">✕</span>`;
         pill.addEventListener('click', () => {
             delete equippedItems[slot];
             renderInventoryGrid();
@@ -890,7 +933,7 @@ function renderInventoryGrid() {
 
     grid.innerHTML = '';
     filtered.forEach(item => {
-        const locked = item.ch > userChapter;
+        const locked = item.ch > getUserChapter();
         const isEquipped = equippedItems[item.slot] === item.id;
         const rarityColor = RARITY_COLORS[item.rarity] || '#fff';
 
@@ -899,14 +942,23 @@ function renderInventoryGrid() {
         card.style.setProperty('--item-color', item.color || rarityColor);
         card.dataset.itemid = item.id;
         card.innerHTML = `
-            <div class="item-card-emoji" style="--item-color:${item.color || rarityColor}">${item.emoji}</div>
-            <div class="item-card-name">${item.name}</div>
-            <div class="item-card-meta">
-                <div class="item-rarity-dot" style="background:${rarityColor}" title="${item.rarity}"></div>
-                <div class="item-card-ch">Ch.${item.ch}</div>
+            <div class="item-card-bg-glow" style="background: radial-gradient(circle at center, ${rarityColor}40, transparent 70%);"></div>
+            <div class="item-card-border" style="border-color: ${rarityColor}50;"></div>
+            <div class="item-card-inner">
+                <div class="item-card-icon-container">
+                    ${item.image ? `<img src="${item.image}" class="item-card-image" alt="${item.name}" onerror="itemImgFallback(this, '${item.emoji || '⚔'}', '${item.color || rarityColor}')">` : `<div class="item-card-emoji text-shadow-glow" style="--item-color:${item.color || rarityColor}">${item.emoji || '⚔'}</div>`}
+                    ${isEquipped ? '<div class="item-equipped-indicator"><svg viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></div>' : ''}
+                    ${locked ? '<div class="item-locked-indicator"><svg viewBox="0 0 24 24" fill="none"><path d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>' : ''}
+                </div>
+                <div class="item-card-content">
+                    <div class="item-card-name" style="color: ${locked ? '#888' : '#fff'};">${item.name}</div>
+                    <div class="item-card-meta">
+                        <div class="item-rarity-badge" style="color: ${rarityColor}; border-color: ${rarityColor}40;">${item.rarity}</div>
+                        <div class="item-card-ch">Ch.${item.ch}</div>
+                    </div>
+                </div>
             </div>
-            ${locked ? '<span class="item-lock-icon">🔒</span>' : ''}
-            ${isEquipped ? '<span class="item-equipped-check">✓</span>' : ''}
+            <div class="item-card-shine"></div>
         `;
         card.addEventListener('click', e => {
             e.stopPropagation();
@@ -916,7 +968,7 @@ function renderInventoryGrid() {
             renderInventoryGrid();
             renderHoloSlots();      // UPDATE HOLO SLOTS
             renderEquippedSlots();
-            showDetailPanel(item, false, e);
+            showDetailPanel(item, false, null);
         });
         card.addEventListener('mouseenter', e => showDetailPanel(item, locked, e));
         card.addEventListener('mouseleave', () => {
@@ -932,10 +984,14 @@ function slotEmoji(slot) {
 }
 
 function validateEquipped() {
-    const allItems = RIFT_DATA.inventoryItems[activeCharId] || [];
-    Object.entries(equippedItems).forEach(([slot, itemId]) => {
-        const item = allItems.find(i => i.id === itemId);
-        if (!item || item.ch > userChapter) delete equippedItems[slot];
+    Object.keys(equippedState).forEach(charId => {
+        const allItems = RIFT_DATA.inventoryItems[charId] || [];
+        const eq = equippedState[charId];
+        if (!eq) return;
+        Object.entries(eq).forEach(([slot, itemId]) => {
+            const item = allItems.find(i => i.id === itemId);
+            if (!item || item.ch > getUserChapter()) delete eq[slot];
+        });
     });
 }
 
@@ -943,8 +999,14 @@ function validateEquipped() {
 function showDetailPanel(item, locked, e) {
     const panel = document.getElementById('item-detail-panel');
     const rarityColor = RARITY_COLORS[item.rarity] || '#fff';
+    panel.style.setProperty('--rarity-color', rarityColor);
 
-    document.getElementById('idp-emoji').textContent = item.emoji;
+    const emojiContainer = document.getElementById('idp-emoji');
+    if (item.image) {
+        emojiContainer.innerHTML = `<img src="${item.image}" class="idp-image" alt="${item.name}" style="width: 100%; height: 100%; object-fit: contain; filter: drop-shadow(0 0 10px ${rarityColor});" onerror="itemImgFallback(this, '${item.emoji || '⚔'}', '${item.color || rarityColor}')" />`;
+    } else {
+        emojiContainer.innerHTML = item.emoji || '⚔';
+    }
     document.getElementById('idp-rarity').textContent = item.rarity.toUpperCase();
     document.getElementById('idp-rarity').style.color = rarityColor;
     document.getElementById('idp-name').textContent = item.name;
@@ -952,14 +1014,14 @@ function showDetailPanel(item, locked, e) {
     document.getElementById('idp-desc').textContent = item.desc;
     document.getElementById('idp-stat').textContent = item.stat;
     document.getElementById('idp-ch').textContent = locked
-        ? `🔒 Unlocks at Chapter ${item.ch} — ${item.ch - userChapter} chapters away`
+        ? `🔒 Unlocks at Chapter ${item.ch} — ${item.ch - getUserChapter()} chapters away`
         : `✓ Unlocked at Chapter ${item.ch}`;
 
     const lockedMsg = document.getElementById('idp-locked-msg');
     const equipBtn = document.getElementById('idp-equip-btn');
     if (locked) {
         lockedMsg.style.display = 'block';
-        lockedMsg.textContent = `Read ${item.ch - userChapter} more chapters to unlock!`;
+        lockedMsg.textContent = `Read ${item.ch - getUserChapter()} more chapters to unlock!`;
         equipBtn.style.display = 'none';
     } else {
         lockedMsg.style.display = 'none';
@@ -973,28 +1035,69 @@ function showDetailPanel(item, locked, e) {
             renderInventoryGrid();
             renderCharDisplay();
             renderEquippedSlots();
-            showDetailPanel(item, false, e);
+            showDetailPanel(item, false, null);
         };
     }
 
-    const rect = e.target.closest?.('.inv-item-card')?.getBoundingClientRect?.() || { left: e.clientX, top: e.clientY, right: e.clientX };
-    let left = rect.left - 295;
-    let top = rect.top;
-    if (left < 8) left = (rect.right || rect.left) + 10;
-    if (top + 380 > window.innerHeight) top = window.innerHeight - 390;
+    if (e) {
+        let rect = { left: e.clientX, top: e.clientY, right: e.clientX };
+        if (e.target && e.target.closest) {
+            const card = e.target.closest('.inv-item-card');
+            if (card && document.body.contains(card)) {
+                rect = card.getBoundingClientRect();
+            }
+        }
+        
+        let left = rect.left - 310;
+        let top = rect.top;
 
-    panel.style.left = left + 'px';
-    panel.style.top = top + 'px';
+        // Temporarily strip transitions to snap position
+        panel.style.transition = 'none';
+        panel.style.transform = 'none'; // Ensure untransformed height
+        panel.style.visibility = 'visible';
+
+        // Remove show temporarily if it was already on
+        panel.classList.remove('show');
+
+        // Force a synchronous layout calculation
+        const trueHeight = panel.offsetHeight;
+
+        // Clamp Left
+        if (left < 10) left = (rect.right || rect.left) + 20;
+
+        // Clamp Bottom (if the bottom of panel goes past the screen height)
+        if (top + trueHeight > window.innerHeight) {
+            top = window.innerHeight - trueHeight - 20;
+        }
+
+        // Clamp Top (don't let it go off the top edge)
+        if (top < 10) top = 10;
+
+        // Apply fixed position
+        panel.style.left = left + 'px';
+        panel.style.top = top + 'px';
+
+        // Force layout to commit the position instantly
+        void panel.offsetWidth;
+
+        // Restore transitions and let CSS handle the fade-in/scale-up
+        panel.style.transition = '';
+        panel.style.transform = '';
+    }
     panel.classList.add('show');
 }
 
 document.getElementById('item-detail-panel').addEventListener('mouseleave', hideDetailPanel);
-function hideDetailPanel() { document.getElementById('item-detail-panel').classList.remove('show'); }
+function hideDetailPanel() {
+    const panel = document.getElementById('item-detail-panel');
+    panel.classList.remove('show');
+    setTimeout(() => { if (!panel.classList.contains('show')) panel.style.visibility = 'hidden'; }, 200);
+}
 
 function updateUnlockInfo() {
     const items = RIFT_DATA.inventoryItems[activeCharId] || [];
-    const unlocked = items.filter(i => i.ch <= userChapter).length;
-    const next = items.find(i => i.ch > userChapter);
+    const unlocked = items.filter(i => i.ch <= getUserChapter()).length;
+    const next = items.find(i => i.ch > getUserChapter());
     document.getElementById('unlock-info').textContent =
         `${unlocked}/${items.length} items unlocked${next ? ` — next at Ch.${next.ch}` : ' — ALL UNLOCKED!'}`;
 }
