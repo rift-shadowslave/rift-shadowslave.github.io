@@ -1,3 +1,26 @@
+# RIFT — Shadow Slave Companion App
+# https://rift-shadowslave.github.io
+
 User-agent: *
 Allow: /
+
+# Allow AI Search Engines to crawl and cite our content
+User-agent: GPTBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: Applebot
+Allow: /
+
 Sitemap: https://rift-shadowslave.github.io/sitemap.xml
