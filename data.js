@@ -36,7 +36,7 @@ const RIFT_DATA = {
             ],
             echoes: ["Saint", "Nightmare", "Fiend", "Serpent"],
             soulAspects: 7,
-            background: "A street orphan from the Outskirts who survived his First Nightmare through cunning. He received the Divine Aspect 'Slaves of Shadows' and inherited Weaver's forbidden lineage. After the Third Nightmare, his fate was stolen, causing everyone to forget his existence.",
+            background: "A street orphan from the Outskirts who survived his First Nightmare through cunning and ruthlessness. He received the Divine Aspect [Shadow Slave] — the highest Aspect rank possible — and inherited Weaver's forbidden lineage. His Flaw, [Clear Conscience], makes him physically incapable of lying. After the Third Nightmare, the Vile Thieving Bird stole his fate, causing everyone to forget his existence. He became Fateless — free from the Nightmare Spell but completely alone.",
             keyMoments: [
                 "Survived the First Nightmare in the Mountain Temple",
                 "Conquered the Crimson Spire in the Forgotten Shore",
@@ -98,9 +98,9 @@ const RIFT_DATA = {
                 { name: "Memory Reading", level: 85, color: "purple" },
                 { name: "Rapier Combat", level: 75, color: "purple" }
             ],
-            echoes: ["Quiet Dancer"],
+            echoes: [],
             soulAspects: 1,
-            background: "Blind by birth after awakening, Cassie's Aspect grants her visions of the future and the ability to read memories. She is a master tactician who engineered a complex web of fate to give Sunny a chance at freedom.",
+            background: "Cassie was born with sight — she had large, beautiful blue eyes. However, when she Awakened, her Flaw [Blind] permanently took her vision as the price for her Divine Aspect. Her Aspect grants her prophetic visions of the future and the ability to read Memories. She wields a rapier called Quiet Dancer (a Memory, not an Echo). Despite appearing gentle, she is a cunning master tactician who engineered a complex web of fate manipulation to give Sunny a chance at freedom from his slave bond.",
             keyMoments: [
                 "Revealed Sunny's True Name to Nephis",
                 "Guided the cohort through the Great River",
@@ -139,8 +139,8 @@ const RIFT_DATA = {
                 "Had a child during the Antarctica Campaign"
             ],
             relationships: [
-                { name: "Sunny", type: "ally", note: "Treats him like a little brother/trusted comrade" },
-                { name: "Kai", type: "ally", note: "Protective of him" }
+                { name: "Sunny", type: "ally", note: "Treats him like a little brother and trusted comrade" },
+                { name: "Kai", type: "spouse", note: "Married to Kai (Nightingale). They have a son together." }
             ]
         },
         {
@@ -171,7 +171,8 @@ const RIFT_DATA = {
                 "Transformed into a monstrous beast in a corrupted timeline"
             ],
             relationships: [
-                { name: "Sunny", type: "ally", note: "One of the few people Kai knows is always honest" }
+                { name: "Sunny", type: "ally", note: "One of the few people Kai knows is always honest (due to Sunny's Flaw)" },
+                { name: "Effie", type: "spouse", note: "Married to Effie. They have a son together." }
             ]
         },
         {
@@ -195,7 +196,7 @@ const RIFT_DATA = {
             ],
             echoes: [],
             soulAspects: 1,
-            background: "Daughter of Anvil of Valor, Sovereign of the Sword clan. Morgan's Aspect turns her entire body into a weapon; everything she touches is cut. She is a ruthless commander and a formidable fighter.",
+            background: "Daughter of Anvil of Valor, the Sovereign of Clan Valor. Morgan is a princess of one of humanity's most powerful Great Clans. Her Aspect turns her entire body into a living weapon — everything she touches can be cut. She is a ruthless military commander and one of the most formidable fighters in Clan Valor's army.",
             keyMoments: [
                 "Led Clan Valor's forces in Antarctica",
                 "Clashed with Sunny multiple times",
@@ -500,66 +501,41 @@ const RIFT_DATA = {
         ],
 
         nephis: [
-            { id: "n1", name: "Memory Clan Robe", slot: "armor", ch: 5, rarity: "uncommon", image: 'assets/items/memory_clan_robe.png', color: "#C8A882", desc: "Nephis arrived in the First Nightmare wearing her clan's ceremonial robes — woven with memory-enchanted thread. Elegant despite the battlefield.", stat: "DEF +6 | Memory Resistance | Clan Heritage" },
-            { id: "n2", name: "Flame Edge Dagger", slot: "weapon", ch: 5, rarity: "uncommon", image: 'assets/items/flame_edge_dagger.png', color: "#FF6B00", desc: "Nephis's primary sidearm through the early arcs — a dagger that ignites with her flame aspect on contact. Precise, controlled, devastating.", stat: "ATK +18 | Flame Edge: Burns on strike | Fast Draw" },
-            { id: "n3", name: "Flame Aspect Bracer", slot: "accessory", ch: 10, rarity: "rare", image: 'assets/items/flame_aspect_bracer.png', color: "#FF8C00", desc: "Bracers that channel Nephis's flame aspect — allowing sustained flame projection without scorching her own hands.", stat: "Flame Control +20 | Sustained Burn | Aspect Channel" },
-            {
-                id: "n4", name: "White Flame Sword",
-                image: 'assets/items/white_flame_sword.png', slot: "weapon", ch: 100, rarity: "rare", emoji: "⚡", color: "#FFF5E0", desc: "A blade that burns with Nephis's abnormal white flame — not orange like normal fire. It sears nightmare essence directly.", stat: "ATK +45 | White Flame | Nightmare Sear | Anti-Shadow"
-            },
-            { id: "n5", name: "Flame Aspect Veil", slot: "cloak", ch: 150, rarity: "rare", image: 'assets/items/flame_aspect_veil.png', color: "#FFD700", desc: "A veil of accumulated flame aura — not actual cloth, but solidified heat that follows Nephis like a corona when she moves at speed.", stat: "Flame Aura: passive burn field | DEF +15 | Intimidation" },
-            { id: "n6", name: "Memory Clan Guardian Shield", slot: "offhand", ch: 200, rarity: "legendary", image: 'assets/items/memory_clan_guardian_shield.png', color: "#8B7355", desc: "The Memory Clan's combat shield — engraved with the clan's founding memory-seals. Deflects both physical and memory-based attacks.", stat: "DEF +50 | Memory Seal: Resist memory disruption | Block" },
-            { id: "n7", name: "Cold White Flame Armor", slot: "armor", ch: 250, rarity: "legendary", image: 'assets/items/cold_white_flame_armor.png', color: "#E0F4FF", desc: "After Nephis's flame turns cold-white in the Tomb of Ariel, her armor transforms — appearing as frozen white fire that burns absolutely.", stat: "DEF +70 | Cold Flame Absorption | Absolute Zero field" },
-            { id: "n8", name: "Flame Sovereign's Crown", slot: "accessory", ch: 400, rarity: "mythic", image: 'assets/items/flame_sovereigns_crown.png', color: "#FFD700", desc: "Not a literal crown — a permanent manifestation of Nephis's flame aspect at its peak. The white flame forms a halo above her head in battle.", stat: "Flame Domain +50m | City-Scale Flame | Transcendent Aura" },
-            { id: "n9", name: "Memory Clan Champion Blade", slot: "weapon", ch: 500, rarity: "mythic", image: 'assets/items/memory_clan_champion_blade.png', color: "#FFEAA0", desc: "The Memory Clan's champion-grade weapon, formally granted to Nephis after her Refined rank advancement. Holds clan memories as power.", stat: "ATK +90 | Memory Resonance | Aspect Amplifier x2" },
-            { id: "n10", name: "Desert Flame Mantle", image: 'assets/items/desert_flame_mantle.png', slot: "cloak", ch: 1260, rarity: "mythic", emoji: "🔥", color: "#FF4500", desc: "During the month-long training with Sunny on the giant turtle in the Nightmare Desert, Nephis's flame aspect evolved once more — manifesting as a permanent mantle of heat that bends the air around her.", stat: "Flame Aura +100% | Heat Distortion | Desert Survival" },
-            { id: "n11", name: "Transcendent Flame Crown", image: 'assets/items/transcendent_flame_crown.png', slot: "accessory", ch: 1500, rarity: "mythic", emoji: "👑", color: "#FFD700", desc: "The ultimate manifestation of Nephis's Transcendent-rank flame aspect. The white flame forms a permanent ethereal crown that burns reality itself — visible only to those with nightmare perception.", stat: "Transcendent Aura | Reality Burn | Flame Domain: 100m" },
+            // Note: Nephis's confirmed Memories include the Dawn Shard and Starlight Legion Armor.
+            // Her Aspect grants white flames that can both heal and destroy.
+            // Her Flaw causes agonizing pain whenever she uses her abilities.
+            // Many of her specific item names need novel verification before listing.
         ],
 
         cassie: [
-            { id: "c1", name: "Sightless Circlet", slot: "accessory", ch: 3, rarity: "uncommon", image: 'assets/items/sightless_circlet.png', color: "#9B59B6", desc: "A simple circlet Cassie wore from the beginning — it doesn't provide vision, but amplifies her prophecy aspect's thread-perception.", stat: "Prophecy Range: +50m | Thread Count: +10 | Focus" },
-            { id: "c2", name: "Thread-Sight Staff", slot: "weapon", ch: 3, rarity: "rare", image: 'assets/items/thread_sight_staff.png', color: "#7D3C98", desc: "A wooden staff Cassie uses to navigate without sight. The wood is from a nightmare tree — it resonates with fate threads.", stat: "ATK +8 | Fate Thread Sensor | Navigation in Darkness" },
-            { id: "c3", name: "Prophecy Shroud", slot: "cloak", ch: 30, rarity: "rare", image: 'assets/items/prophecy_shroud.png', color: "#2C1654", desc: "A dark cloak that swirls with faint starlight patterns when Cassie is actively seeing prophecies. Other Awakened find it unsettling.", stat: "Prophecy Stability +30 | Intimidation field: Seer" },
-            { id: "c4", name: "Blind Oracle's Focus", slot: "offhand", ch: 50, rarity: "rare", image: 'assets/items/blind_oracles_focus.png', color: "#8A2BE2", desc: "A crystal orb Cassie uses to anchor large-scale prophecies — prevents her from getting lost in far-future visions.", stat: "Prophecy Anchor | Range +100% | Vision Stability" },
-            { id: "c5", name: "Fate Thread Blade", slot: "weapon", ch: 100, rarity: "legendary", image: 'assets/items/fate_thread_blade.png', color: "#6C3483", desc: "A knife Cassie carries — enchanted to cut fate threads in the physical world. She uses it when a vision shows a thread that must be severed.", stat: "ATK +30 | Thread Cut: severs minor fate events | Anti-Destiny" },
-            { id: "c6", name: "Seer's Robes", slot: "armor", ch: 150, rarity: "legendary", image: 'assets/items/seers_robes.png', color: "#4A235A", desc: "Robes that adapt to the shape of emerging prophecies — patterns shift and change on the fabric as new futures present themselves.", stat: "DEF +25 | Prophecy Clarity +50 | Future Sight: passive" },
-            { id: "c7", name: "Oracle's Chain", slot: "accessory", ch: 540, rarity: "mythic", image: 'assets/items/oracles_chain.png', color: "#9B59B6", desc: "After Cassie's prophecy aspect evolves to multi-day temporal range, this chain manifests — binding her to the present despite seeing days ahead.", stat: "Temporal Anchor | Prophecy Range: 72hrs | Present Lock" },
-            { id: "c8", name: "Time Loop Thread", image: 'assets/items/time_loop_thread.png', slot: "special", ch: 1436, rarity: "mythic", emoji: "🔮", color: "#22D3EE", desc: "On Wind Flower Island, Cassie's Prophecy Aspect allowed her to perceive the time loop's structure differently — she sensed fate threads doubling and re-weaving. This crystallized thread is a remnant of that awareness.", stat: "Temporal Perception | Loop Detection | Thread Vision" },
-            { id: "c9", name: "Estuary Vision Stone", image: 'assets/items/estuary_vision_stone.png', slot: "offhand", ch: 1570, rarity: "mythic", emoji: "💎", color: "#7C3AED", desc: "At the Estuary, Cassie witnessed the revelation of the Seven Gods alongside Sunny. This vision stone preserves the prophetic resonance of that moment — the truth of the Forgotten God imprinted into crystal.", stat: "Lore Anchor | Forgotten God Resonance | Prophecy: Divine-tier" },
+            // Note: Cassie's confirmed Memories include Quiet Dancer (her rapier).
+            // Her Aspect grants prophetic visions of the future.
+            // Her Flaw [Blind] took her sight upon Awakening.
+            // She also has a silver half-mask.
+            // Many of her specific item names need novel verification before listing.
         ],
 
         effie: [
-            { id: "e1", name: "Iron Gauntlets", slot: "offhand", ch: 4, rarity: "uncommon", image: 'assets/items/iron_gauntlets.png', color: "#708090", desc: "Effie's preferred combat tool — iron gauntlets that reinforce her naturally superhuman punch force. She's never without them.", stat: "ATK +15 | Punch Force x2 | Bone Break chance: 20%" },
-            { id: "e2", name: "Hunt Aspect Wraps", slot: "accessory", ch: 4, rarity: "rare", image: 'assets/items/hunt_aspect_wraps.png', color: "#2ECC71", desc: "Binding wraps that channel Effie's Hunt Aspect through her limbs — allowing her to track nightmare creatures by touch alone.", stat: "Hunt Tracking | Touch Perception | Speed +20%" },
-            { id: "e3", name: "Nightmare Hide Plate", slot: "armor", ch: 20, rarity: "uncommon", image: 'assets/items/nightmare_hide_plate.png', color: "#556B2F", desc: "Heavy armor plates skinned from Awakened-class nightmare creatures. Effie cobbled it together herself — messy, heavy, very effective.", stat: "DEF +35 | Weight: Heavy | Nightmare Resistance: Mid" },
-            { id: "e4", name: "Huntress Greatsword", slot: "weapon", ch: 50, rarity: "rare", image: 'assets/items/huntress_greatsword.png', color: "#228B22", desc: "An oversized blade suited to Effie's strength — most Awakened couldn't swing it, but she does so with terrifying speed.", stat: "ATK +55 | Two-handed | Cleave: hits 3 targets | Heavy" },
-            { id: "e5", name: "Beast Pelt Cloak", slot: "cloak", ch: 100, rarity: "rare", image: 'assets/items/beast_pelt_cloak.png', color: "#2D5A27", desc: "A cloak of woven nightmare beast pelts — they retain a faint hunt aura, making Effie harder to detect by scent or noise.", stat: "Stealth +20 | Hunt Aura | Beast Deterrent field" },
-            { id: "e6", name: "Hunt Constellation Armbands", slot: "accessory", ch: 650, rarity: "mythic", image: 'assets/items/hunt_constellation_armbands.png', color: "#00FF7F", desc: "Upon reaching Master rank, Effie's Hunt Aspect forms visible constellation patterns on her skin. The armbands are the physical focus.", stat: "Hunt Domain | Nightmare Command: passive | Master Rank" },
-            { id: "e7", name: "Alpha Predator Armor", slot: "armor", ch: 650, rarity: "mythic", image: 'assets/items/alpha_predator_armor.png', color: "#006400", desc: "Post-Master rank armor — nightmare creatures of Awakened class instinctively submit when they see this armor, recognizing the Hunt Aspect's dominance.", stat: "DEF +110 | Creature Submission aura | Physical: x3 baseline" },
-            { id: "e8", name: "Iron Fist of the Hunt", slot: "weapon", ch: 900, rarity: "mythic", image: 'assets/items/iron_fist_of_the_hunt.png', color: "#008000", desc: "Effie's Master-rank weapon — an iron gauntlet infused with Hunt Aspect essence. Each punch creates a shockwave that stuns everything within 10m.", stat: "ATK +100 | Shockwave: 10m stun | Nightmare Crush | Master" },
-            { id: "e9", name: "Great River War Plate", image: 'assets/items/great_river_war_plate.png', slot: "armor", ch: 1480, rarity: "mythic", emoji: "🛡️", color: "#004D00", desc: "Armor reinforced during the Great River journey — nightmare creature bone plated with river-titan scales. Effie assembled it from kills during the perilous voyage.", stat: "DEF +130 | River Resistance | Temporal Shielding" },
-            { id: "e10", name: "Mother's Resolve Gauntlets", image: 'assets/items/mothers_resolve_gauntlets.png', slot: "offhand", ch: 1600, rarity: "mythic", emoji: "🤲", color: "#00CC00", desc: "After Sunny's transcendence, Effie no longer remembers her battle companion. But her Supreme Memory farm thrives, and her son Little Ling — born as a Saint — is her new priority. These gauntlets are softer, designed for holding rather than hitting.", stat: "Saint-Child Containment | Physical: x4 | Farm Protection Mode" },
+            // Note: Effie's specific Memory/item names are not fully documented in the novel.
+            // She fights with a spear and shield and can transform into a towering giant.
+            // Her Flaw causes constant, insatiable hunger.
+            // She is married to Kai and they have a son together.
+            // Items below are based on confirmed novel details only.
         ],
 
         kai: [
-            { id: "k1", name: "Arrow Clan Recurve Bow", slot: "weapon", ch: 5, rarity: "uncommon", image: 'assets/items/arrow_clan_recurve_bow.png', color: "#8B4513", desc: "Kai's primary weapon — an Arrow Clan precision recurve bow. The clan's mark is carved into the grip. Every shot is calculated.", stat: "ATK +20 | Precision: +40% | Range: 300m | Silent" },
-            { id: "k2", name: "Clan Quiver — 24 Arrows", slot: "offhand", ch: 5, rarity: "uncommon", image: 'assets/items/clan_quiver_24_arrows.png', color: "#A0522D", desc: "Arrow Clan signature arrows — fletched with nightmare raven feathers that stabilize trajectory in dimensional winds.", stat: "Arrow Capacity: 24 | Trajectory Stable | Piercing" },
-            { id: "k3", name: "Hunter's Vest", slot: "armor", ch: 20, rarity: "uncommon", image: 'assets/items/hunters_vest.png', color: "#6B5844", desc: "Light combat vest favored by Arrow Clan scouts — padded in the right places, open enough for full draw motion.", stat: "DEF +15 | Mobility: High | Draw Speed: +25%" },
-            { id: "k4", name: "Phantom Arrow Quiver", slot: "offhand", ch: 350, rarity: "legendary", image: 'assets/items/phantom_arrow_quiver.png', color: "#4169E1", desc: "After Refined rank — his arrows no longer need to follow physics. The quiver holds arrows that exist in perceptual space until they strike.", stat: "Phantom Trajectory | Curve: any angle | Invisible path" },
-            { id: "k5", name: "Archer's Longcloak", slot: "cloak", ch: 100, rarity: "rare", image: 'assets/items/archers_longcloak.png', color: "#1C3A5E", desc: "A long dark cloak designed to break silhouette — when Kai is still, he is essentially invisible against any natural backdrop.", stat: "Stealth +45 | Silhouette Break | Observation Resistance" },
-            { id: "k6", name: "Arrow Clan Intelligence Seal", slot: "accessory", ch: 350, rarity: "legendary", image: 'assets/items/arrow_clan_intelligence_seal.png', color: "#191970", desc: "After Kai reveals clan intel to Sunny — a personal seal that marks him as outside clan authority. It carries intelligence from clan archives.", stat: "Intel Access | Clan Network | Counter-Tracking" },
-            { id: "k7", name: "Phantom Archer Armor", slot: "armor", ch: 820, rarity: "mythic", image: 'assets/items/phantom_archer_armor.png', color: "#000080", desc: "Master rank armor that bends light slightly — Kai appears as a distortion rather than a person when wearing this at range.", stat: "DEF +80 | Light Bend | Location Confusion | Master Rank" },
-            { id: "k8", name: "Star-Path Composite Bow", slot: "weapon", ch: 820, rarity: "mythic", image: 'assets/items/star_path_composite_bow.png', color: "#4682B4", desc: "Kai's Master rank weapon — a bow strung with condensed arrow aspect. The string appears as a line of starlight. Draws itself.", stat: "ATK +95 | Self-Draw | Range: 2000m | Aspect Amplified" },
+            // Note: Kai's specific Memory/item names are not fully documented in the novel.
+            // He is known as an aerial archer with wings (Flight ability) and Voice Command.
+            // Kai was a famous idol/celebrity before Awakening. His Flaw forces him to hear absolute truth.
+            // Items below are based on confirmed novel details only.
         ],
 
         morgans: [
-            { id: "m1", name: "Blood Faction Robes", slot: "armor", ch: 120, rarity: "uncommon", image: 'assets/items/blood_faction_robes.png', color: "#8B0000", desc: "The signature deep crimson robes of the Blood Faction — woven with blood-sealing thread that prevents external manipulation of the wearer's blood.", stat: "DEF +20 | Blood Seal: self | Anti-Blood: resist" },
-            { id: "m2", name: "Sanguine Dagger", slot: "weapon", ch: 120, rarity: "rare", image: 'assets/items/sanguine_dagger.png', color: "#DC143C", desc: "Morgan's blade — forged with blood-iron alloy. Contact with blood (friend or enemy) triggers the blood manipulation aspect.", stat: "ATK +30 | Blood Trigger: on cut | Aspect Activation" },
-            { id: "m3", name: "Bloodweave Gloves", slot: "offhand", ch: 120, rarity: "rare", image: 'assets/items/bloodweave_gloves.png', color: "#A00000", desc: "Thin gloves that allow Morgan to shape and project blood at range without physical contact — a signature Blood Faction technique.", stat: "Blood Range: 30m | Projection | No Contact Required" },
-            { id: "m4", name: "Pallid Mask", slot: "accessory", ch: 130, rarity: "legendary", image: 'assets/items/pallid_mask.png', color: "#DC143C", desc: "A bone-white mask Morgan wears in high-stakes encounters — it conceals his Awakened aura, making his rank undetectable.", stat: "Aura Concealment | Rank Hidden | Intimidation: extreme" },
-            { id: "m5", name: "Blood Ritual Tome", slot: "special", ch: 200, rarity: "legendary", image: 'assets/items/blood_ritual_tome.png', color: "#8B0000", desc: "A tome containing Blood Faction ritual techniques — amplification rituals that push power beyond normal rank limits at physical cost.", stat: "Ritual: Power x1.5 | Cost: HP 30% | Blood Beyond Rank" },
-            { id: "m6", name: "Crimson War Plate", slot: "armor", ch: 280, rarity: "legendary", image: 'assets/items/crimson_war_plate.png', color: "#B22222", desc: "Armor assembled from nightmare creature bone plated with blood-iron. Morgan's personal combat gear for serious engagements.", stat: "DEF +60 | Blood Absorption | Self-Heal: 5% on kill" },
-            { id: "m7", name: "Sovereign Blood Seal", slot: "special", ch: 1050, rarity: "mythic", image: 'assets/items/sovereign_blood_seal.png', color: "#4A0000", desc: "After Morgan's deepening Blood Faction allegiances — a seal that marks him as aligned with forces beyond the Great Clans. Its true purpose is unknown.", stat: "Unknown Power | Sovereign Link | Blood Domain: 500m" },
+            // Note: Morgan's specific Memory/item names are not fully documented in the novel.
+            // She is the daughter of Anvil (Sovereign of Clan Valor).
+            // Her Aspect (Cutting) turns her entire body into a weapon.
+            // Morgan is female (Princess of Valor), not male.
+            // Items below are based on confirmed novel details only.
         ],
 
         jet: [
